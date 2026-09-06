@@ -186,12 +186,27 @@ function commitCustom() {
 root.addEventListener('click', (event) => {
 	const option = event.target.closest('[data-option]');
 	if (option) {
-		// Picking a picture card drops any free text that was there before.
+		// Picking a card drops any free text that was there before.
+		const wasEditing = editingCustom;
 		editingCustom = false;
 		customDraft = '';
 		answerBeforeCustom = null;
 		record(option.dataset.option, '');
-		render();
+
+		// Closing the text field changes the markup, so that case needs a
+		// full redraw. Otherwise update in place: rebuilding every card just
+		// to move a highlight made the whole list blink.
+		if (wasEditing) {
+			render();
+			return;
+		}
+		for (const card of root.querySelectorAll('[data-option]')) {
+			card.classList.toggle('option--selected', card === option);
+		}
+		const toggle = root.querySelector('.custom__toggle');
+		toggle.classList.remove('custom--chosen');
+		toggle.querySelector('.custom__text').textContent = 'Свій варіант';
+		root.querySelector('[data-nav="next"]').disabled = false;
 		return;
 	}
 
