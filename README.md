@@ -1,27 +1,38 @@
-# Спільний напрямок — опитування
+# Spilnyi Napryamok — audience quiz
 
-Мини-игра-опрос для молодёжной встречи. Участники отвечают с телефонов,
-оператор показывает статистику на проекторе.
+A small quiz for a youth meeting. People answer from their phones, and the
+operator puts the results on the projector at the end.
 
-- `index.html` — экран участника
-- `host.html` — экран оператора (результаты)
+- `index.html` — the participant screen
+- `host.html` — the operator screen with the results slider
 
-Без сборки: чистый HTML, ES-модули и CSS. Данные — Firebase Firestore.
+No build step: plain HTML, ES modules and CSS. Answers are stored in Firebase
+Firestore, one document per participant.
 
-## Запуск локально
+## Running locally
 
-ES-модули не работают по `file://`, нужен любой статический сервер:
+ES modules do not work over `file://`, so serve the folder:
 
 ```bash
 npx serve .
-# или
+# or
 python -m http.server 8080
 ```
 
-Затем `http://localhost:8080/` и `http://localhost:8080/host.html`.
+Then open `http://localhost:8080/` and `http://localhost:8080/host.html`.
 
-## Документация
+Until the Firebase config in `app/firebase.js` is filled in, `app/store.js`
+runs with `MOCK = true`: answers stay in `localStorage` and the audience is
+generated, so the results slider has something to show.
 
-- [docs/spec.md](docs/spec.md) — ТЗ и принятые решения
-- [CLAUDE.md](CLAUDE.md) — структура и соглашения
-- [images/CREDITS.md](images/CREDITS.md) — лицензии картинок
+## Editing the content
+
+Questions, options and images live in `app/questions.js` and nowhere else.
+Option ids are what reaches the database — keep them stable, change only
+labels and images.
+
+## Documentation
+
+- [docs/spec.md](docs/spec.md) — requirements and the decisions behind them
+- [CLAUDE.md](CLAUDE.md) — layout and conventions
+- [images/CREDITS.md](images/CREDITS.md) — image licences
