@@ -5,7 +5,7 @@
 
 import { QUESTIONS, CUSTOM_ID, CUSTOM_TEXT_FIELD } from './questions.js';
 
-const MOCK = true;
+const MOCK = false;
 
 const SESSION_KEY = 'ym_session_id';
 const MY_ANSWERS_KEY = 'ym_mock_my_answers';
