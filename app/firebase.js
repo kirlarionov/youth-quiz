@@ -19,12 +19,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 
 const firebaseConfig = {
-	apiKey: 'TODO',
-	authDomain: 'TODO',
-	projectId: 'TODO',
-	storageBucket: 'TODO',
-	messagingSenderId: 'TODO',
-	appId: 'TODO',
+	apiKey: 'AIzaSyCSjg_Df5mQ_4Vt5RqFN63l0u8tMeEKMGg',
+	authDomain: 'sda-3-youth-ministry.firebaseapp.com',
+	projectId: 'sda-3-youth-ministry',
+	storageBucket: 'sda-3-youth-ministry.firebasestorage.app',
+	messagingSenderId: '78468742158',
+	appId: '1:78468742158:web:d079308dc1a1f6a6d6105f',
 };
 
 const db = getFirestore(initializeApp(firebaseConfig));
