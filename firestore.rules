@@ -1,0 +1,23 @@
+rules_version = '2';
+
+// Paste this into Firebase console -> Firestore Database -> Rules -> Publish.
+//
+// Everyone may create and update session documents (participants have no
+// accounts) and everyone may read them (the operator screen needs the whole
+// collection). Deleting is open too, because the operator's "clear results"
+// button has no account to authenticate with — see docs/spec.md for why that
+// trade-off was accepted. No other collection is reachable.
+//
+// A full session holds 15 answers + 15 free-text fields + updatedAt = 31
+// fields, so the size cap below only stops someone stuffing the document.
+// The 100-character limit on free text is enforced by the client only.
+
+service cloud.firestore {
+	match /databases/{database}/documents {
+		match /sessions/{sessionId} {
+			allow read: if true;
+			allow create, update: if request.resource.data.size() <= 40;
+			allow delete: if true;
+		}
+	}
+}
