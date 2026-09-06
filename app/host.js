@@ -124,7 +124,7 @@ function renderStage() {
 			const width = max ? (count / max) * 100 : 0;
 			return `
 				<div class="result${count === max && count > 0 ? ' result--top' : ''}">
-					${option.image ? `<img src="${option.image}" alt="" />` : '<div></div>'}
+					${option.image ? `<img src="${option.image}" alt="" />` : `<span class="result__emoji">${option.emoji ?? ''}</span>`}
 					<div class="result__track">
 						<div class="result__fill" data-width="${width}"></div>
 						<div class="result__label">${option.label}</div>

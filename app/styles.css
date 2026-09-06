@@ -121,6 +121,14 @@ img {
 	display: none;
 }
 
+.option__emoji {
+	display: block;
+	padding: 16px 12px 2px;
+	font-size: clamp(30px, 8.5vw, 44px);
+	line-height: 1.1;
+	text-align: center;
+}
+
 .option__label {
 	display: block;
 	padding: 9px 11px 11px;
@@ -330,6 +338,37 @@ img {
 	color: var(--muted);
 	font-size: 13px;
 	font-variant-numeric: tabular-nums;
+}
+
+.options--list {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.options--list .option {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-height: 60px;
+	padding-right: 12px;
+}
+
+.options--list .option__emoji {
+	flex: none;
+	padding: 0 0 0 14px;
+	font-size: 28px;
+}
+
+.options--list .option__label {
+	padding: 12px 0;
+}
+
+.options--list .option--selected::after {
+	position: static;
+	margin-left: auto;
+	flex: none;
+	width: 26px;
+	height: 26px;
+	font-size: 14px;
 }
 
 /* Two columns get cramped on very narrow phones. */
@@ -601,6 +640,12 @@ img {
 	object-fit: cover;
 	border-radius: 10px;
 	background: var(--surface-hi);
+}
+
+.result__emoji {
+	font-size: clamp(26px, 3.4vw, 52px);
+	text-align: center;
+	line-height: 1;
 }
 
 .result__track {

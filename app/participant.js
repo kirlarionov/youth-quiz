@@ -50,15 +50,21 @@ function renderStart() {
 }
 
 function optionMarkup(option, selected) {
-	const image = option.image
+	// A photo when the question has them, the emoji otherwise.
+	const visual = option.image
 		? `<img class="option__image" src="${option.image}" alt="" loading="lazy" />`
-		: '';
+		: `<span class="option__emoji">${option.emoji ?? ''}</span>`;
 	return `
 		<button class="option${selected ? ' option--selected' : ''}" data-option="${option.id}">
-			${image}
+			${visual}
 			<span class="option__label">${option.label}</span>
 		</button>`;
 }
+
+// Long answers do not fit a two-column grid: they get one full-width row each.
+const LONG_LABEL = 24;
+const isLongForm = (question) =>
+	!question.options.some((o) => o.image) && question.options.some((o) => o.label.length > LONG_LABEL);
 
 function customMarkup(question) {
 	const chosen = answers[question.id] === CUSTOM_ID;
@@ -99,7 +105,9 @@ function renderQuestion() {
 			<div class="quiz__bar"><span></span></div>
 		</div>
 		<h1 class="quiz__question">${question.text}</h1>
-		<div class="options">${question.options.map((o) => optionMarkup(o, o.id === answered)).join('')}</div>
+		<div class="options${isLongForm(question) ? ' options--list' : ''}">
+			${question.options.map((o) => optionMarkup(o, o.id === answered)).join('')}
+		</div>
 		${customMarkup(question)}
 		<div class="quiz__nav">
 			<button class="nav-btn" data-nav="prev"${index === 0 ? ' disabled' : ''}>Назад</button>
