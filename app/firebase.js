@@ -1,4 +1,4 @@
-// Real Firestore implementation. Only reached when store.js has MOCK = false.
+// Firestore implementation behind store.js.
 //
 // Paste the config from Firebase console:
 //   Project settings -> Your apps -> Web app -> SDK setup and configuration.

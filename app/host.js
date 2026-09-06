@@ -1,5 +1,5 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_TEXT_FIELD } from './questions.js';
-import { subscribeToSessions, clearAllAnswers, isMock } from './store.js';
+import { subscribeToSessions, clearAllAnswers } from './store.js';
 import { wireImageFallbacks } from './html.js';
 
 const panel = document.getElementById('panel');
@@ -55,10 +55,7 @@ function renderPanel() {
 
 	panel.innerHTML = `
 		<h1>Екран ведучого</h1>
-		<p class="panel__hint">
-			${isMock ? 'Режим мокових даних — учасників згенеровано випадково. ' : ''}
-			У слайдері: стрілки — гортати, F — на весь екран, Esc — закрити.
-		</p>
+		<p class="panel__hint">У слайдері: стрілки — гортати, F — на весь екран, Esc — закрити.</p>
 		<div class="panel__stat"><b>${answeredCount()}</b> учасників відповіли</div>
 		<div class="panel__actions">
 			<button class="nav-btn nav-btn--primary" data-action="open">Показати результати</button>
