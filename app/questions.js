@@ -96,11 +96,11 @@ export const QUESTIONS = [
 		id: 'q7',
 		text: 'Що ти швидше ввімкнеш у машині?',
 		options: [
-			{ id: 'rock', emoji: '🎸', label: 'Рок' },
 			{ id: 'pop', emoji: '🎤', label: 'Поп' },
+			{ id: 'worship', emoji: '🙌', label: 'Worship' },
+			{ id: 'rock', emoji: '🎸', label: 'Рок' },
 			{ id: 'electronic', emoji: '🎧', label: 'Електронну музику' },
 			{ id: 'calm', emoji: '🎹', label: 'Спокійну музику' },
-			{ id: 'worship', emoji: '🙌', label: 'Worship' },
 			{ id: 'podcast', emoji: '🎙️', label: 'Подкаст' },
 			{ id: 'silence', emoji: '🤫', label: 'Нічого — люблю тишу' },
 			{ id: 'other_music', emoji: '🎵', label: 'Інше' },
