@@ -158,7 +158,10 @@ function renderStage() {
 	stage.innerHTML = `
 		<div class="stage__top">
 			<span class="stage__count"></span>
-			<button class="stage__close" data-stage="close" title="Закрити (Esc)">✕</button>
+			<button class="stage__icon" data-stage="fullscreen" title="На весь екран (F)" aria-label="На весь екран">
+				${document.fullscreenElement ? '⤡' : '⤢'}
+			</button>
+			<button class="stage__icon" data-stage="close" title="Закрити (Esc)" aria-label="Закрити">✕</button>
 		</div>
 		<div class="stage__body">
 			<button class="stage__arrow" data-stage="prev"${index === 0 ? ' disabled' : ''} title="Назад">‹</button>
@@ -221,6 +224,14 @@ function updateStage() {
 
 // --- events -----------------------------------------------------------------
 
+/** Full screen is what the projector wants; the icon follows the state. */
+function toggleFullscreen() {
+	const done = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+	Promise.resolve(done)
+		.catch(() => {})
+		.then(renderStage);
+}
+
 function openStage(at) {
 	stageOpen = true;
 	index = at;
@@ -238,6 +249,7 @@ panel.addEventListener('click', (event) => {
 stage.addEventListener('click', (event) => {
 	const button = event.target.closest('[data-stage]');
 	if (!button) return;
+	if (button.dataset.stage === 'fullscreen') return toggleFullscreen();
 	if (button.dataset.stage === 'close') stageOpen = false;
 	if (button.dataset.stage === 'prev') index = Math.max(0, index - 1);
 	if (button.dataset.stage === 'next') index = Math.min(QUESTIONS.length - 1, index + 1);
@@ -266,11 +278,8 @@ document.addEventListener('keydown', (event) => {
 	if (event.key === 'Escape') stageOpen = false;
 	else if (event.key === 'ArrowLeft') index = Math.max(0, index - 1);
 	else if (event.key === 'ArrowRight' || event.key === ' ') index = Math.min(QUESTIONS.length - 1, index + 1);
-	else if (key === 'f' || key === 'а') {
-		if (document.fullscreenElement) document.exitFullscreen();
-		else document.documentElement.requestFullscreen();
-		return;
-	} else return;
+	else if (key === 'f' || key === 'а') return toggleFullscreen();
+	else return;
 
 	event.preventDefault();
 	renderStage();

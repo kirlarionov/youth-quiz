@@ -90,7 +90,7 @@
 | `q6-citywalk.webp` | Гуляти містом | [View east along Calle Francisco Madera from Calle Bolivar, Mexico City](https://commons.wikimedia.org/wiki/File:View_east_along_Calle_Francisco_Madera_from_Calle_Bolivar,_Mexico_City.jpg) | Daniel Case | CC BY-SA 3.0 |
 | `q6-boardgames.webp` | Настільні ігри | [board game night](https://www.flickr.com/photos/36770908@N08/4421257399) | gfairchild | CC BY 2.0 |
 | `q6-trip.webp` | Кудись поїхати | [Driving on winding forest highway in California (Unsplash)](https://commons.wikimedia.org/wiki/File:Driving_on_winding_forest_highway_in_California_(Unsplash).jpg) | Vladimir Kudinov madbyte | CC0 |
-| `q6-party.webp` | Велика тусовка | [balloon party](https://www.flickr.com/photos/11429749@N00/765330683) | harlandspinksphoto | CC BY 2.0 |
+| `q6-party.webp` | Велика тусовка | [Dereboyu youth festival 2018 crowd](https://commons.wikimedia.org/wiki/File:Dereboyu_youth_festival_2018_crowd.jpg) | Nicosia Turkish Municipality | CC BY-SA 4.0 |
 
 ## Вопрос 3 — «Як виглядає твій ідеальний вечір?»
 

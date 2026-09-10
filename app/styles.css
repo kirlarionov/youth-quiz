@@ -681,7 +681,7 @@ body.stage-open {
 	right: 16px;
 }
 
-.stage__close,
+.stage__icon,
 .stage__arrow {
 	display: grid;
 	place-items: center;
@@ -695,8 +695,13 @@ body.stage-open {
 	line-height: 1;
 }
 
-.stage__close {
+/* The pair of controls sits at the far end of the header. */
+.stage__top .stage__icon:first-of-type {
 	margin-left: auto;
+}
+
+.stage__top {
+	gap: 10px;
 }
 
 .stage__arrow:disabled {
