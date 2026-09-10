@@ -160,7 +160,7 @@ function renderDone() {
 		<div class="done">
 			<h1>Дякуємо!</h1>
 			<p>Відповіді прийнято: ${answered} з ${QUESTIONS.length}.<br />Результати покажемо на екрані.</p>
-			<button class="nav-btn" data-nav="back">Повернутися і змінити</button>
+			<button class="nav-btn" data-nav="back">Повернутися до питань</button>
 			<button class="nav-btn" data-nav="home">На головну</button>
 		</div>`;
 }
@@ -347,8 +347,10 @@ root.addEventListener('click', (event) => {
 		else index += 1;
 	}
 	if (nav.dataset.nav === 'back') {
+		// Back to the very first question, so a second run is possible. Nothing
+		// is erased: each answer is replaced only when a new one is picked.
 		screen = 'quiz';
-		index = QUESTIONS.length - 1;
+		index = 0;
 	}
 	if (nav.dataset.nav === 'home') screen = 'start';
 	// Draw first, then jump: scrolling before the new markup exists leaves the
