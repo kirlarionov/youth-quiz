@@ -161,6 +161,7 @@ function renderDone() {
 			<h1>Дякуємо!</h1>
 			<p>Відповіді прийнято: ${answered} з ${QUESTIONS.length}.<br />Результати покажемо на екрані.</p>
 			<button class="nav-btn" data-nav="back">Повернутися і змінити</button>
+			<button class="nav-btn" data-nav="home">На головну</button>
 		</div>`;
 }
 
@@ -312,6 +313,7 @@ root.addEventListener('click', (event) => {
 		screen = 'quiz';
 		index = QUESTIONS.length - 1;
 	}
+	if (nav.dataset.nav === 'home') screen = 'start';
 	// Draw first, then jump: scrolling before the new markup exists leaves the
 	// old scroll height in charge and the question starts below the fold.
 	render();
