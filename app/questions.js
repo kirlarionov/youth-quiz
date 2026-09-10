@@ -86,6 +86,7 @@ export const QUESTIONS = [
 			{ id: 'cafe', emoji: '🍔', label: 'Кафе / ресторан' },
 			{ id: 'bowling', emoji: '🎳', label: 'Боулінг / активності' },
 			{ id: 'nature', emoji: '🌳', label: 'Природа' },
+			{ id: 'citywalk', emoji: '🌆', label: 'Гуляти містом' },
 			{ id: 'boardgames', emoji: '🎲', label: 'Настільні ігри' },
 			{ id: 'trip', emoji: '🚗', label: 'Кудись поїхати' },
 			{ id: 'party', emoji: '🎉', label: 'Велика тусовка' },

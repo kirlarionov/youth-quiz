@@ -19,7 +19,7 @@
 
 | Файл | Вариант | Оригинал | Автор | Лицензия |
 |---|---|---|---|---|
-| `q2-football.webp` | Футбол | [Messi Copa America 2011](https://commons.wikimedia.org/wiki/File:Messi_Copa_America_2011.jpg) | LG전자 | CC BY 2.0 |
+| `q2-football.webp` | Футбол | [UEFA Champions League 2009, Quarter Final FC Porto-Manchester United](https://commons.wikimedia.org/wiki/File:UEFA_Champions_League_2009,_Quarter_Final_FC_Porto-Manchester_United.jpg) | https://www.flickr.com/people/gowestphoto/ | CC BY 2.0 |
 | `q2-volleyball.webp` | Волейбол | [251000 - Sitting volleyball Greg Sobzcak net - 3b - 2000 Sydney match photo](https://commons.wikimedia.org/wiki/File:251000_-_Sitting_volleyball_Greg_Sobzcak_net_-_3b_-_2000_Sydney_match_photo.jpg) | Sport the library | CC BY-SA 3.0 |
 | `q2-basketball.webp` | Баскетбол | [LeBron James Layup (Cleveland vs Brooklyn 2018)](https://commons.wikimedia.org/wiki/File:LeBron_James_Layup_(Cleveland_vs_Brooklyn_2018).jpg) | Erik Drost | CC BY 2.0 |
 | `q2-motorsport.webp` | Формула-1 | [2010 Malaysian GP opening lap](https://commons.wikimedia.org/wiki/File:2010_Malaysian_GP_opening_lap.jpg) | Morio | CC BY-SA 3.0 |
