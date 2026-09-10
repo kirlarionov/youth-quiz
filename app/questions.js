@@ -264,5 +264,3 @@ export const QUESTIONS = [
 		],
 	},
 ];
-
-export const questionById = (id) => QUESTIONS.find((q) => q.id === id);

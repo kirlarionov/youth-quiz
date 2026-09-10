@@ -18,12 +18,12 @@ index.html        экран участника (телефон)
 host.html         экран оператора + проектор
 app/
   questions.js    контент: вопросы, варианты, картинки
-  store.js        доступ к данным, переключатель MOCK ↔ Firebase
+  store.js        доступ к данным поверх firebase.js
   firebase.js     конфиг и реальная реализация Firestore
   participant.js  логика экрана участника
   host.js         логика экрана оператора
   styles.css      все стили
-images/           картинки вариантов (пока внешние ссылки в questions.js)
+images/           заставка и картинки вариантов, пути заданы в questions.js
 docs/spec.md      ТЗ и принятые решения — читать перед изменениями
 ```
 

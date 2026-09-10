@@ -53,13 +53,17 @@ export async function deleteAllSessions() {
 	return snapshot.size;
 }
 
-export function watchSessions(callback) {
-	return onSnapshot(collection(db, SESSIONS), (snapshot) => {
-		callback(
-			snapshot.docs.map((d) => {
-				const { updatedAt, ...answers } = d.data();
-				return { id: d.id, ...answers };
-			}),
-		);
-	});
+export function watchSessions(callback, onError) {
+	return onSnapshot(
+		collection(db, SESSIONS),
+		(snapshot) => {
+			callback(
+				snapshot.docs.map((d) => {
+					const { updatedAt, ...answers } = d.data();
+					return { id: d.id, ...answers };
+				}),
+			);
+		},
+		onError,
+	);
 }

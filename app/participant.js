@@ -1,6 +1,6 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_MAX_LENGTH, CUSTOM_TEXT_FIELD } from './questions.js';
 import { loadMyAnswers, saveAnswer } from './store.js';
-import { sanitizeText, wireImageFallbacks } from './html.js';
+import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
 
 const root = document.getElementById('quiz');
 
@@ -14,6 +14,8 @@ let customDraft = '';
 // What the answer was before the free-text box was opened, so that closing it
 // empty puts the previous choice back instead of leaving the question blank.
 let answerBeforeCustom = null;
+
+const CUSTOM_PLACEHOLDER = 'Свій варіант';
 
 // Images of the next question are fetched while the current one is on screen,
 // so switching does not flash empty cards on a slow connection.
@@ -55,9 +57,9 @@ function optionMarkup(option, selected) {
 		? `<img class="option__image" src="${option.image}" alt="" loading="lazy" />`
 		: `<span class="option__emoji">${option.emoji ?? ''}</span>`;
 	return `
-		<button class="option${selected ? ' option--selected' : ''}" data-option="${option.id}">
+		<button class="option${selected ? ' option--selected' : ''}" data-option="${option.id}" aria-pressed="${selected}">
 			${visual}
-			<span class="option__label">${option.label}</span>
+			<span class="option__label">${escapeHtml(option.label)}</span>
 		</button>`;
 }
 
@@ -104,7 +106,7 @@ function renderQuestion() {
 			<span>${index + 1} / ${QUESTIONS.length}</span>
 			<div class="quiz__bar"><span></span></div>
 		</div>
-		<h1 class="quiz__question">${question.text}</h1>
+		<h1 class="quiz__question">${escapeHtml(question.text)}</h1>
 		<div class="options${isLongForm(question) ? ' options--list' : ''}">
 			${question.options.map((o) => optionMarkup(o, o.id === answered)).join('')}
 		</div>
@@ -128,7 +130,7 @@ function renderQuestion() {
 		input.setSelectionRange(input.value.length, input.value.length);
 	} else {
 		root.querySelector('.custom__text').textContent =
-			answered === CUSTOM_ID && customText ? customText : 'Свій варіант';
+			answered === CUSTOM_ID && customText ? customText : CUSTOM_PLACEHOLDER;
 	}
 
 	wireImageFallbacks(root);
@@ -151,13 +153,51 @@ function render() {
 	else renderQuestion();
 }
 
+// A card lights up the moment it is tapped, so a write that never lands would
+// be invisible. Firestore does not reject an offline write — it queues it and
+// the promise simply never settles — so silence is what has to be watched for.
+const SAVE_TIMEOUT = 10000;
+
+let unsaved = 0;
+let saveWarning = null;
+
+function reportSave() {
+	if (unsaved > 0 && !saveWarning) {
+		saveWarning = document.createElement('div');
+		saveWarning.className = 'save-error';
+		saveWarning.setAttribute('role', 'status');
+		saveWarning.textContent = 'Відповіді не зберігаються. Перевір інтернет.';
+		document.body.append(saveWarning);
+		document.body.classList.add('has-save-error');
+	} else if (unsaved === 0 && saveWarning) {
+		saveWarning.remove();
+		saveWarning = null;
+		document.body.classList.remove('has-save-error');
+	}
+}
+
+/** Warns when a write is neither confirmed within SAVE_TIMEOUT nor rejected. */
+function trackSave(write) {
+	const timer = setTimeout(() => {
+		unsaved += 1;
+		reportSave();
+	}, SAVE_TIMEOUT);
+
+	const settle = (failed) => {
+		clearTimeout(timer);
+		// Writes reach the server in order, so one confirmation means the queue
+		// behind it went through as well.
+		unsaved = failed ? unsaved + 1 : 0;
+		reportSave();
+	};
+	write.then(() => settle(false), () => settle(true));
+}
+
 function record(optionId, text = '') {
 	const question = QUESTIONS[index];
 	answers[question.id] = optionId;
 	answers[CUSTOM_TEXT_FIELD(question.id)] = text;
-	// Fire-and-forget: the UI already reflects the choice, and a failed write
-	// is retried by Firestore's own offline queue.
-	saveAnswer(question.id, optionId, text);
+	trackSave(saveAnswer(question.id, optionId, text));
 }
 
 /**
@@ -202,10 +242,11 @@ root.addEventListener('click', (event) => {
 		}
 		for (const card of root.querySelectorAll('[data-option]')) {
 			card.classList.toggle('option--selected', card === option);
+			card.setAttribute('aria-pressed', String(card === option));
 		}
 		const toggle = root.querySelector('.custom__toggle');
 		toggle.classList.remove('custom--chosen');
-		toggle.querySelector('.custom__text').textContent = 'Свій варіант';
+		toggle.querySelector('.custom__text').textContent = CUSTOM_PLACEHOLDER;
 		root.querySelector('[data-nav="next"]').disabled = false;
 		return;
 	}
@@ -263,10 +304,16 @@ root.addEventListener('keydown', (event) => {
 });
 
 // The splash always comes first; loading previous answers only decides whether
-// its button says "Почати" or "Продовжити", and where it leads.
-loadMyAnswers().then((saved) => {
-	answers = saved;
-	if (screen === 'start') render();
-});
+// its button says "Почати" or "Продовжити", and where it leads. Someone who
+// taps through faster than the network answers may already have picked
+// something by now, and that wins over what the database returns.
+loadMyAnswers()
+	.then((saved) => {
+		answers = { ...saved, ...answers };
+		render();
+	})
+	.catch(() => {
+		// No previous answers to restore: the quiz simply starts empty.
+	});
 
 render();

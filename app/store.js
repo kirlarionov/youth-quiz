@@ -5,12 +5,34 @@ import { loadSession, writeAnswer, watchSessions, deleteAllSessions } from './fi
 
 const SESSION_KEY = 'ym_session_id';
 
+// Private browsing and blocked cookies make localStorage throw on access, so
+// every touch is guarded. The id then lives in memory only: answers still
+// reach the database, they just stop being recognised after a reload.
+let memoryId = null;
+
+function readStoredId() {
+	try {
+		return localStorage.getItem(SESSION_KEY);
+	} catch {
+		return null;
+	}
+}
+
+function storeId(id) {
+	try {
+		localStorage.setItem(SESSION_KEY, id);
+	} catch {
+		// Memory-only session; nothing else to do.
+	}
+}
+
 /** Identifies this browser. Created once and kept for the whole event. */
 export function getMySessionId() {
-	let id = localStorage.getItem(SESSION_KEY);
+	let id = readStoredId() ?? memoryId;
 	if (!id) {
 		id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
-		localStorage.setItem(SESSION_KEY, id);
+		memoryId = id;
+		storeId(id);
 	}
 	return id;
 }
@@ -31,9 +53,11 @@ export function saveAnswer(questionId, optionId, text = '') {
 /**
  * Live feed of every session, for the operator screen.
  * Calls back with an array of answer objects. Returns an unsubscribe function.
+ * `onError` fires when the feed stops: the numbers on screen are frozen from
+ * that moment on.
  */
-export function subscribeToSessions(callback) {
-	return watchSessions(callback);
+export function subscribeToSessions(callback, onError) {
+	return watchSessions(callback, onError);
 }
 
 /**
