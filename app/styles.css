@@ -241,10 +241,13 @@ body.has-save-error .quiz__nav {
 
 .start {
 	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	/* dvh, not 100%: on iOS the full viewport runs under the browser toolbar,
+	   which pushed the button out of reach. */
+	height: 100vh;
+	height: 100dvh;
 	overflow: hidden;
 	z-index: 5;
 }
@@ -259,9 +262,12 @@ body.has-save-error .quiz__nav {
 }
 
 /* The clip is shot vertically, so on a phone it fills the screen edge to edge.
-   A wide screen would crop it to a strip, hence the landscape rule below. */
+   A wide screen would crop it to a strip, hence the landscape rule below.
+   Positioned absolutely rather than sized in percentages: as a flex item with
+   height:100% Safari collapsed it to nothing and only the backdrop showed. */
 .start__media {
-	position: relative;
+	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;

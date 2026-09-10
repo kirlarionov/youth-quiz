@@ -42,8 +42,8 @@ function renderStart() {
 	root.innerHTML = `
 		<div class="start">
 			<div class="start__backdrop"></div>
-			<video class="start__media" poster="${START_POSTER}" autoplay muted loop playsinline
-				preload="auto" disablepictureinpicture aria-hidden="true"></video>
+			<video class="start__media" src="${START_VIDEO}" poster="${START_POSTER}" autoplay muted loop
+				playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
 			<button class="start__cta" data-nav="begin">
 				${hasStarted() ? 'Продовжити' : 'Почати'}
 			</button>
@@ -52,9 +52,17 @@ function renderStart() {
 	const video = root.querySelector('.start__media');
 	// Safari checks the property, not just the attribute, before allowing autoplay.
 	video.muted = true;
-	video.src = START_VIDEO;
 	// A refused autoplay leaves the poster in place, which is a fine fallback.
 	video.play().catch(() => {});
+	// If the clip cannot be played at all, fall back to the poster as an image
+	// so the screen never shows only the blurred backdrop.
+	video.addEventListener('error', () => {
+		const poster = document.createElement('img');
+		poster.className = 'start__media';
+		poster.src = START_POSTER;
+		poster.alt = '';
+		video.replaceWith(poster);
+	});
 
 	root.querySelector('.start__backdrop').style.backgroundImage = `url("${START_POSTER}")`;
 	preload(0);
