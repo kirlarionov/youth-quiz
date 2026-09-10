@@ -108,7 +108,7 @@ export const QUESTIONS = [
 	},
 	{
 		id: 'q8',
-		text: 'Якби тобі подарували повністю вільну суботу, ти б…',
+		text: 'Що б ти зробив, якби тобі подарували повністю вільний понеділок?',
 		options: [
 			{ id: 'sleep', emoji: '😴', label: 'Виспався' },
 			{ id: 'friends', emoji: '👥', label: 'Зустрівся з друзями' },
@@ -128,6 +128,7 @@ export const QUESTIONS = [
 			{ id: 'scifi', emoji: '🚀', label: 'Фантастику' },
 			{ id: 'action', emoji: '💥', label: 'Бойовики' },
 			{ id: 'drama', emoji: '❤️', label: 'Романтику / драми' },
+			{ id: 'historical', emoji: '🏰', label: 'Історичні фільми' },
 			{ id: 'documentary', emoji: '📚', label: 'Документальні фільми' },
 			{ id: 'nothing', emoji: '👀', label: 'Майже нічого не дивлюся' },
 		],
