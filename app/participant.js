@@ -30,12 +30,22 @@ function preload(questionIndex) {
 }
 
 const hasStarted = () => QUESTIONS.some((q) => answers[q.id]);
+const allAnswered = () => QUESTIONS.every((q) => answers[q.id]);
 
-/** Where "begin" should land: the first unanswered question, or the thank-you. */
+/** What the splash button offers, which depends on how far the person got. */
+function startLabel() {
+	if (allAnswered()) return 'Перепройти';
+	return hasStarted() ? 'Продовжити' : 'Почати';
+}
+
+/**
+ * Where "begin" lands: the first unanswered question, or — when everything is
+ * answered — the very first one, for a second pass. Old answers stay until
+ * each is replaced.
+ */
 function resumePoint() {
 	const firstUnanswered = QUESTIONS.findIndex((q) => !answers[q.id]);
-	if (firstUnanswered === -1) return { screen: 'done', index: QUESTIONS.length - 1 };
-	return { screen: 'quiz', index: firstUnanswered };
+	return { screen: 'quiz', index: firstUnanswered === -1 ? 0 : firstUnanswered };
 }
 
 function renderStart() {
@@ -44,9 +54,7 @@ function renderStart() {
 			<div class="start__backdrop"></div>
 			<video class="start__media" src="${START_VIDEO}" poster="${START_POSTER}" autoplay muted loop
 				playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
-			<button class="start__cta" data-nav="begin">
-				${hasStarted() ? 'Продовжити' : 'Почати'}
-			</button>
+			<button class="start__cta" data-nav="begin">${startLabel()}</button>
 		</div>`;
 
 	const video = root.querySelector('.start__media');
@@ -340,6 +348,10 @@ root.addEventListener('click', (event) => {
 	if (!nav) return;
 
 	commitCustom();
+	// Leaving a question is the natural moment to save: waiting out the buffer
+	// would lose the answer if the page were closed in the next second.
+	// A burst of fast taps still coalesces, because one write runs at a time.
+	flushSaves();
 	if (nav.dataset.nav === 'begin') ({ screen, index } = resumePoint());
 	if (nav.dataset.nav === 'prev') index = Math.max(0, index - 1);
 	if (nav.dataset.nav === 'next') {

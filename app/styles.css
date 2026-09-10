@@ -1,4 +1,6 @@
 :root {
+	/* Paints native scrollbars, form controls and selection dark. */
+	color-scheme: dark;
 	--bg: #101014;
 	--surface: #1a1a21;
 	--surface-hi: #23232c;
@@ -601,8 +603,15 @@ body.has-save-error .quiz__nav {
 
 /* ============ fullscreen results slider ============ */
 
+/* The page behind must not scroll as well, or two scrollbars show up. */
+body.stage-open {
+	overflow: hidden;
+}
+
 /* The slide itself scrolls; only the chrome stays put. */
 .stage {
+	scrollbar-width: thin;
+	scrollbar-color: var(--surface-hi) transparent;
 	position: fixed;
 	inset: 0;
 	overflow-y: auto;
@@ -613,6 +622,26 @@ body.has-save-error .quiz__nav {
 
 .stage[hidden] {
 	display: none;
+}
+
+.stage::-webkit-scrollbar {
+	width: 10px;
+}
+
+.stage::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.stage::-webkit-scrollbar-thumb {
+	border: 3px solid transparent;
+	border-radius: 999px;
+	background: var(--surface-hi);
+	background-clip: content-box;
+}
+
+.stage::-webkit-scrollbar-thumb:hover {
+	background: var(--line);
+	background-clip: content-box;
 }
 
 .stage__top {

@@ -56,3 +56,75 @@
 > **Примечание.** `q2-football.webp` — кадр с матча Лиги чемпионов,
 > предоставленный владельцем проекта. В отличие от остальных файлов он не
 > под свободной лицензией: права принадлежат съёмочному агентству.
+
+## Вопрос 5 — «Що тобі ближче?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q5-morning.webp` | Ранок | [Morning sky shortly after sunrise, High Desert, California](https://commons.wikimedia.org/wiki/File:Morning_sky_shortly_after_sunrise,_High_Desert,_California.jpg) | Jessie Eastland | CC BY-SA 3.0 |
+| `q5-night.webp` | Ніч | [Barcelona night stars NachoMG](https://commons.wikimedia.org/wiki/File:Barcelona_night_stars_NachoMG.jpg) | Nacho MG | CC BY-SA 4.0 |
+| `q5-both.webp` | І там, і там | [Coffee-desk-laptop-notebook (24244320481)](https://commons.wikimedia.org/wiki/File:Coffee-desk-laptop-notebook_(24244320481).jpg) | www.Pixel.la Free Stock Photos | CC0 |
+| `q5-neither.webp` | Не люблю прокидатися | [Girl asleep with her smooth Collie](https://commons.wikimedia.org/wiki/File:Girl_asleep_with_her_smooth_Collie.JPG) | David Shankbone | CC BY 3.0 |
+
+## Вопрос 7 — «Що ти швидше ввімкнеш у машині?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q7-pop.webp` | Поп | [The Script (8639490457)](https://commons.wikimedia.org/wiki/File:The_Script_(8639490457).jpg) | Eva Rinaldi | CC BY-SA 2.0 |
+| `q7-worship.webp` | Worship | [Crusade Conference South Sudanese Refugees and Host Communities, Rhino Refugee Camp, Uganda 2026](https://commons.wikimedia.org/wiki/File:Crusade_Conference_South_Sudanese_Refugees_and_Host_Communities,_Rhino_Refugee_Camp,_Uganda_2026.jpg) | Oliversamson1 | CC0 |
+| `q7-rock.webp` | Рок | [Guitarist performs on stage during a nighttime concert](https://commons.wikimedia.org/wiki/File:Guitarist_performs_on_stage_during_a_nighttime_concert.jpg) | Shixart1985 | CC BY 2.0 |
+| `q7-electronic.webp` | Електронна музика | [DFC 5183 Hands-on mixing a DJ tweaks levels and cues glowing controls on a Pioneer DJ mixer under red club lights](https://commons.wikimedia.org/wiki/File:DFC_5183_Hands-on_mixing_a_DJ_tweaks_levels_and_cues_glowing_controls_on_a_Pioneer_DJ_mixer_under_red_club_lights.jpg) | PattayaPatrol | CC BY-SA 4.0 |
+| `q7-calm.webp` | Спокійна музика | [Boesendorfer-5075415](https://commons.wikimedia.org/wiki/File:Boesendorfer-5075415.jpg) | ermell | CC BY-SA 3.0 |
+| `q7-podcast.webp` | Подкаст | [Microphone in SPNN Podcast studio](https://commons.wikimedia.org/wiki/File:Microphone_in_SPNN_Podcast_studio.jpg) | Myotus | CC BY 4.0 |
+| `q7-silence.webp` | Тиша | [Car interior close-up with dashboard controls and charging cable at night](https://commons.wikimedia.org/wiki/File:Car_interior_close-up_with_dashboard_controls_and_charging_cable_at_night.jpg) | Shixart1985 | CC BY 2.0 |
+| `q7-other_music.webp` | Інше | [Vinyl + Grado Headphones (Unsplash)](https://commons.wikimedia.org/wiki/File:Vinyl_+_Grado_Headphones_(Unsplash).jpg) | Mark Solarski marksolarski | CC0 |
+
+## Вопрос 6 — «Який формат зустрічі з друзями ти обереш?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q6-home.webp` | Посиденьки вдома | [Ready for company.](https://www.flickr.com/photos/8561899@N04/2503780641) | Banjo Brown | CC BY 2.0 |
+| `q6-cafe.webp` | Кафе / ресторан | [Figaro Coffee shop interior in Salawag, Dasmariñas, Cavite — 19 Mar 2022](https://commons.wikimedia.org/wiki/File:Figaro_Coffee_shop_interior_in_Salawag,_Dasmariñas,_Cavite_—_19_Mar_2022.jpg) | UndueMarmot | CC BY 4.0 |
+| `q6-bowling.webp` | Боулінг | [Pro Shop ready to roll at Potomac Lanes Bowling Center 1058791](https://commons.wikimedia.org/wiki/File:Pro_Shop_ready_to_roll_at_Potomac_Lanes_Bowling_Center_1058791.jpg) | Lt.Cmdr. Jim Remington | Public domain |
+| `q6-nature.webp` | Природа | [A tent, bear food box and campfire ring in a campsite 3W6A3665 (53056105180)](https://commons.wikimedia.org/wiki/File:A_tent,_bear_food_box_and_campfire_ring_in_a_campsite_3W6A3665_(53056105180).jpg) | Forest Service - Northern Region | Public domain |
+| `q6-citywalk.webp` | Гуляти містом | [View east along Calle Francisco Madera from Calle Bolivar, Mexico City](https://commons.wikimedia.org/wiki/File:View_east_along_Calle_Francisco_Madera_from_Calle_Bolivar,_Mexico_City.jpg) | Daniel Case | CC BY-SA 3.0 |
+| `q6-boardgames.webp` | Настільні ігри | [board game night](https://www.flickr.com/photos/36770908@N08/4421257399) | gfairchild | CC BY 2.0 |
+| `q6-trip.webp` | Кудись поїхати | [Driving on winding forest highway in California (Unsplash)](https://commons.wikimedia.org/wiki/File:Driving_on_winding_forest_highway_in_California_(Unsplash).jpg) | Vladimir Kudinov madbyte | CC0 |
+| `q6-party.webp` | Велика тусовка | [balloon party](https://www.flickr.com/photos/11429749@N00/765330683) | harlandspinksphoto | CC BY 2.0 |
+
+## Вопрос 3 — «Як виглядає твій ідеальний вечір?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q3-friends.webp` | Компанія друзів | [#Sharing: Friday night pizza](https://www.flickr.com/photos/126337928@N05/17405004226) | Dai Lygad | CC BY 2.0 |
+| `q3-one_on_one.webp` | Розмова один на один | [Coffee served on a wooden table with two cups and a small dish at a cozy setting](https://commons.wikimedia.org/wiki/File:Coffee_served_on_a_wooden_table_with_two_cups_and_a_small_dish_at_a_cozy_setting.jpg) | Shixart1985 | CC BY 2.0 |
+| `q3-movie.webp` | Фільм або серіал | [Living Room In Home Cinema Mode](https://www.flickr.com/photos/37803129@N00/260259716) | @yakobusan Jakob Montrasio | CC BY 2.0 |
+| `q3-games.webp` | Ігри | [Hands holding video game controller (50811892858)](https://commons.wikimedia.org/wiki/File:Hands_holding_video_game_controller_(50811892858).jpg) | Vu Hoang | CC BY 2.0 |
+| `q3-book.webp` | Книга / спокій удома | [Books beverage blanket - Credit to https://homegets.com/](https://www.flickr.com/photos/141436406@N04/48932230061) | homegets.com | CC BY 2.0 |
+| `q3-walk.webp` | Прогулянка | [Evening Serenity by the Park](https://commons.wikimedia.org/wiki/File:Evening_Serenity_by_the_Park.jpg) | PASAM NUTAN | CC BY 4.0 |
+| `q3-hobby.webp` | Моє хобі | [A palette with a spatula and paint brushes](https://commons.wikimedia.org/wiki/File:A_palette_with_a_spatula_and_paint_brushes.jpg) | Jean François de le Motte | Public domain |
+
+## Вопрос 9 — «Що тобі цікавіше дивитися?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q9-comedy.webp` | Комедії | [Terracotta comedy mask agora museum athens](https://commons.wikimedia.org/wiki/File:Terracotta_comedy_mask_agora_museum_athens.jpg) | Jebulon | CC0 |
+| `q9-detective.webp` | Детективи | [Close up (2116701281)](https://commons.wikimedia.org/wiki/File:Close_up_(2116701281).jpg) | runran from An island in the stream | CC BY-SA 2.0 |
+| `q9-scifi.webp` | Фантастика | [STARS-1 launch 2](https://commons.wikimedia.org/wiki/File:STARS-1_launch_2.jpg) | US Army | Public domain |
+| `q9-action.webp` | Бойовики | [Explosion at Rambo Stunt Show, Movieland, Lake Garda](https://commons.wikimedia.org/wiki/File:Explosion_at_Rambo_Stunt_Show,_Movieland,_Lake_Garda.jpg) | Spencer Wright from North Walsham, England | CC BY 2.0 |
+| `q9-drama.webp` | Романтика / драми | [Rain drops on a glass](https://commons.wikimedia.org/wiki/File:Rain_drops_on_a_glass.jpg) | Chinmayee Mishra | CC BY-SA 4.0 |
+| `q9-historical.webp` | Історичні фільми | [Warwick Castle knight+horse 1](https://commons.wikimedia.org/wiki/File:Warwick_Castle_knight+horse_1.jpg) | Jitka Erbenová (cheva) | CC BY-SA 3.0 |
+| `q9-documentary.webp` | Документальні | [Camera set-up for the indoor filming](https://commons.wikimedia.org/wiki/File:Camera_set-up_for_the_indoor_filming.jpg) | Nirvana Studios - Custom Circus | CC BY 4.0 |
+| `q9-nothing.webp` | Майже нічого не дивлюся | [Empty Liverpool Theatre during COVID](https://commons.wikimedia.org/wiki/File:Empty_Liverpool_Theatre_during_COVID.jpg) | Pete from Liverpool, UK | CC BY 2.0 |
+
+## Вопрос 8 — «Що б ти зробив, якби тобі подарували вільний понеділок?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q8-sleep.webp` | Виспався | [EFTA00002037 - Sunlight streams through sheer curtains onto a white bed with rumpled sheets and pillows casting soft shadows in a serene bedroom](https://commons.wikimedia.org/wiki/File:EFTA00002037_-_Sunlight_streams_through_sheer_curtains_onto_a_white_bed_with_rumpled_sheets_and_pillows_casting_soft_shadows_in_a_serene_bedroom.jpg) | Federal Bureau of Investigation | Public domain |
+| `q8-friends.webp` | Зустрівся з друзями | [DFC 2027 A group gathers around a glowing birthday cake as the celebrant prepares to blow out the candles while friends and family smile and capture the moment](https://commons.wikimedia.org/wiki/File:DFC_2027_A_group_gathers_around_a_glowing_birthday_cake_as_the_celebrant_prepares_to_blow_out_the_candles_while_friends_and_family_smile_and_capture_the_moment.jpg) | PattayaPatrol | CC BY-SA 4.0 |
+| `q8-trip.webp` | Кудись поїхав | [Look Through The Window (101411899)](https://commons.wikimedia.org/wiki/File:Look_Through_The_Window_(101411899).jpeg) | Guilherme Moreira | CC0 |
+| `q8-home.webp` | Провів день удома | [Cat in sofa at Cat Cafe Nyankoto](https://commons.wikimedia.org/wiki/File:Cat_in_sofa_at_Cat_Cafe_Nyankoto.jpg) | Emma0mb | CC BY 4.0 |
+| `q8-todo.webp` | Зробив те, що відкладаю | [Electronics Repair Workbench](https://commons.wikimedia.org/wiki/File:Electronics_Repair_Workbench.jpg) | 10kdollz | CC BY-SA 4.0 |
+| `q8-hobby.webp` | Хобі | [Playing acoustic guitar](https://commons.wikimedia.org/wiki/File:Playing_acoustic_guitar.jpg) | Jonik | CC BY-SA 1.0 |
+| `q8-spontaneous.webp` | Спонтанно | [Packed (157 / 365)](https://www.flickr.com/photos/66335021@N00/3602619940) | somegeekintn | CC BY 2.0 |

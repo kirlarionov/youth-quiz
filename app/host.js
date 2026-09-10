@@ -125,6 +125,10 @@ function renderConfirm() {
 // --- results slider ---------------------------------------------------------
 
 function renderStage() {
+	// The panel behind keeps its own scrollbar unless it is locked while the
+	// slide is up.
+	document.body.classList.toggle('stage-open', stageOpen);
+
 	if (!stageOpen) {
 		stage.hidden = true;
 		stage.innerHTML = '';
