@@ -164,6 +164,18 @@ function renderDone() {
 		</div>`;
 }
 
+/**
+ * Brings "Далі" into view after an answer is picked. With ten options the
+ * button sits below the fold and people do not know it is there.
+ * `block: 'nearest'` leaves the page alone when it is already visible.
+ */
+function revealNav() {
+	const nav = root.querySelector('.quiz__nav');
+	if (!nav) return;
+	const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+	nav.scrollIntoView({ block: 'nearest', behavior: smooth ? 'smooth' : 'auto' });
+}
+
 function render() {
 	if (screen === 'start') renderStart();
 	else if (screen === 'done') renderDone();
@@ -255,6 +267,7 @@ root.addEventListener('click', (event) => {
 		// to move a highlight made the whole list blink.
 		if (wasEditing) {
 			render();
+			revealNav();
 			return;
 		}
 		for (const card of root.querySelectorAll('[data-option]')) {
@@ -265,6 +278,7 @@ root.addEventListener('click', (event) => {
 		toggle.classList.remove('custom--chosen');
 		toggle.querySelector('.custom__text').textContent = CUSTOM_PLACEHOLDER;
 		root.querySelector('[data-nav="next"]').disabled = false;
+		revealNav();
 		return;
 	}
 
