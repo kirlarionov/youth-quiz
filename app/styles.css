@@ -603,7 +603,10 @@ body.has-save-error .quiz__nav {
 
 /* ============ fullscreen results slider ============ */
 
-/* The page behind must not scroll as well, or two scrollbars show up. */
+/* The page behind must not scroll as well, or two scrollbars show up. Both
+   elements are locked: which of them owns the viewport scrollbar depends on
+   the browser. */
+html.stage-open,
 body.stage-open {
 	overflow: hidden;
 }
@@ -845,6 +848,23 @@ body.stage-open {
 	gap: 8px;
 	max-height: 26vh;
 	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--surface-hi) transparent;
+}
+
+.own__list::-webkit-scrollbar {
+	width: 8px;
+}
+
+.own__list::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.own__list::-webkit-scrollbar-thumb {
+	border: 2px solid transparent;
+	border-radius: 999px;
+	background: var(--surface-hi);
+	background-clip: content-box;
 }
 
 .own__item {

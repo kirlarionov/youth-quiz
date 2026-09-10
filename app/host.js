@@ -127,6 +127,7 @@ function renderConfirm() {
 function renderStage() {
 	// The panel behind keeps its own scrollbar unless it is locked while the
 	// slide is up.
+	document.documentElement.classList.toggle('stage-open', stageOpen);
 	document.body.classList.toggle('stage-open', stageOpen);
 
 	if (!stageOpen) {
