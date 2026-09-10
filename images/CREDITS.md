@@ -30,3 +30,14 @@
 | `q2-workout.webp` | Турніки / воркаут | [Calisthenics Poststadion Berlin 3v5](https://commons.wikimedia.org/wiki/File:Calisthenics_Poststadion_Berlin_3v5.jpg) | Singlespeedfahrer | CC0 |
 | `q2-tabletennis.webp` | Настільний теніс | [Mondial Ping - Men's Doubles - Semifinals - 34](https://commons.wikimedia.org/wiki/File:Mondial_Ping_-_Men's_Doubles_-_Semifinals_-_34.jpg) | Pierre-Yves Beaudouin | CC BY-SA 3.0 |
 | `q2-no_sport.webp` | Спорт — не моє | [Living Room 3D Render with Interior Design by NONAGON studio](https://commons.wikimedia.org/wiki/File:Living_Room_3D_Render_with_Interior_Design_by_NONAGON_studio.png) | Isobelmckenzie | CC BY-SA 4.0 |
+
+## Вопрос 4 — «Що ти обереш у подорожі?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q4-many_places.webp` | Побачити більше місць | [Flight departure board at Brisbane Airport, December 2022](https://commons.wikimedia.org/wiki/File:Flight_departure_board_at_Brisbane_Airport,_December_2022.jpg) | Kgbo | CC BY-SA 4.0 |
+| `q4-relax.webp` | Просто відпочити | [DFC 4017 Shaded loungers and colorful umbrellas line a quiet sandy beach framing a calm blue sea under a clear sky](https://commons.wikimedia.org/wiki/File:DFC_4017_Shaded_loungers_and_colorful_umbrellas_line_a_quiet_sandy_beach_framing_a_calm_blue_sea_under_a_clear_sky.jpg) | PattayaPatrol | CC BY-SA 4.0 |
+| `q4-food.webp` | Місцева їжа | [Jordanian Traditional Mansaf, Petra Restaurant, 2026 (01)](https://commons.wikimedia.org/wiki/File:Jordanian_Traditional_Mansaf,_Petra_Restaurant,_2026_(01).jpg) | Bahnfrend | CC BY-SA 4.0 |
+| `q4-history.webp` | Історичні місця | [Colosseum of Rome and Roman forum](https://commons.wikimedia.org/wiki/File:Colosseum_of_Rome_and_Roman_forum.jpg) | Wilfredor | CC0 |
+| `q4-adventure.webp` | Пригоди й активності | [Mountaineering Man Trail Path Mountains](https://commons.wikimedia.org/wiki/File:Mountaineering_Man_Trail_Path_Mountains.jpg) | Hermann | CC0 |
+| `q4-photos.webp` | Красиві місця та фото | [Tropea - Fotografi di fronte a Santa Maria dell'Isola](https://commons.wikimedia.org/wiki/File:Tropea_-_Fotografi_di_fronte_a_Santa_Maria_dell'Isola.jpg) | Benjamin Smith | CC BY-SA 4.0 |

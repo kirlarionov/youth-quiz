@@ -60,12 +60,12 @@ export const QUESTIONS = [
 		id: 'q4',
 		text: 'Що ти обереш у подорожі?',
 		options: [
-			{ id: 'many_places', emoji: '🗺️', label: 'Побачити якомога більше місць' },
-			{ id: 'relax', emoji: '🏖️', label: 'Просто відпочити' },
-			{ id: 'food', emoji: '🍜', label: 'Спробувати місцеву їжу' },
-			{ id: 'history', emoji: '🏛️', label: 'Історичні місця та музеї' },
-			{ id: 'adventure', emoji: '🥾', label: 'Пригоди й активності' },
-			{ id: 'photos', emoji: '📸', label: 'Красиві місця та фото' },
+			{ id: 'many_places', emoji: '🗺️', label: 'Побачити якомога більше місць', image: './images/q4-many_places.webp' },
+			{ id: 'relax', emoji: '🏖️', label: 'Просто відпочити', image: './images/q4-relax.webp' },
+			{ id: 'food', emoji: '🍜', label: 'Спробувати місцеву їжу', image: './images/q4-food.webp' },
+			{ id: 'history', emoji: '🏛️', label: 'Історичні місця та музеї', image: './images/q4-history.webp' },
+			{ id: 'adventure', emoji: '🥾', label: 'Пригоди й активності', image: './images/q4-adventure.webp' },
+			{ id: 'photos', emoji: '📸', label: 'Красиві місця та фото', image: './images/q4-photos.webp' },
 		],
 	},
 	{
