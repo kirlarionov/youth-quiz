@@ -19,7 +19,7 @@
 
 | Файл | Вариант | Оригинал | Автор | Лицензия |
 |---|---|---|---|---|
-| `q2-football.webp` | Футбол | [UEFA Champions League 2009, Quarter Final FC Porto-Manchester United](https://commons.wikimedia.org/wiki/File:UEFA_Champions_League_2009,_Quarter_Final_FC_Porto-Manchester_United.jpg) | https://www.flickr.com/people/gowestphoto/ | CC BY 2.0 |
+| `q2-football.webp` | Футбол | Кадр з матчу, наданий замовником | — | несвободная, см. примечание |
 | `q2-volleyball.webp` | Волейбол | [251000 - Sitting volleyball Greg Sobzcak net - 3b - 2000 Sydney match photo](https://commons.wikimedia.org/wiki/File:251000_-_Sitting_volleyball_Greg_Sobzcak_net_-_3b_-_2000_Sydney_match_photo.jpg) | Sport the library | CC BY-SA 3.0 |
 | `q2-basketball.webp` | Баскетбол | [LeBron James Layup (Cleveland vs Brooklyn 2018)](https://commons.wikimedia.org/wiki/File:LeBron_James_Layup_(Cleveland_vs_Brooklyn_2018).jpg) | Erik Drost | CC BY 2.0 |
 | `q2-motorsport.webp` | Формула-1 | [2010 Malaysian GP opening lap](https://commons.wikimedia.org/wiki/File:2010_Malaysian_GP_opening_lap.jpg) | Morio | CC BY-SA 3.0 |
@@ -41,3 +41,18 @@
 | `q4-history.webp` | Історичні місця | [Colosseum of Rome and Roman forum](https://commons.wikimedia.org/wiki/File:Colosseum_of_Rome_and_Roman_forum.jpg) | Wilfredor | CC0 |
 | `q4-adventure.webp` | Пригоди й активності | [Mountaineering Man Trail Path Mountains](https://commons.wikimedia.org/wiki/File:Mountaineering_Man_Trail_Path_Mountains.jpg) | Hermann | CC0 |
 | `q4-photos.webp` | Красиві місця та фото | [Tropea - Fotografi di fronte a Santa Maria dell'Isola](https://commons.wikimedia.org/wiki/File:Tropea_-_Fotografi_di_fronte_a_Santa_Maria_dell'Isola.jpg) | Benjamin Smith | CC BY-SA 4.0 |
+
+## Вопрос 10 — «Що обереш на вечерю?»
+
+| Файл | Вариант | Оригинал | Автор | Лицензия |
+|---|---|---|---|---|
+| `q10-pizza.webp` | Піца | [Whole Foods Kitchen Margherita Pizza 2 (15411931231)](https://commons.wikimedia.org/wiki/File:Whole_Foods_Kitchen_Margherita_Pizza_2_(15411931231).jpg) | Willis Lam | CC BY-SA 2.0 |
+| `q10-sushi.webp` | Суші | [Various sushi, beautiful October night at midnight](https://commons.wikimedia.org/wiki/File:Various_sushi,_beautiful_October_night_at_midnight.jpg) | Yumi Kimura | CC BY-SA 2.0 |
+| `q10-burger.webp` | Бургер | [In-N-Out Burger hamburger and animal fries](https://commons.wikimedia.org/wiki/File:In-N-Out_Burger_hamburger_and_animal_fries.jpg) | trumanlo | CC BY-SA 2.0 |
+| `q10-homemade.webp` | Щось домашнє | [Plates of pierogi with sour cream and onion](https://commons.wikimedia.org/wiki/File:Plates_of_pierogi_with_sour_cream_and_onion.jpg) | stu_spivack | CC BY-SA 2.0 |
+| `q10-shawarma.webp` | Шаурма | [Shawarma-sandwich-01](https://commons.wikimedia.org/wiki/File:Shawarma-sandwich-01.jpg) | Vera Yu and David Li | CC BY 2.0 |
+| `q10-light.webp` | Щось легке | [Liat Portal for Foodie Disorder - Mixed vegetable salad with fresh herbs](https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Mixed_vegetable_salad_with_fresh_herbs.jpg) | HaJunkiyada | CC BY-SA 4.0 |
+
+> **Примечание.** `q2-football.webp` — кадр с матча Лиги чемпионов,
+> предоставленный владельцем проекта. В отличие от остальных файлов он не
+> под свободной лицензией: права принадлежат съёмочному агентству.

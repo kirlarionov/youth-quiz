@@ -135,14 +135,14 @@ export const QUESTIONS = [
 	},
 	{
 		id: 'q10',
-		text: 'Який формат гри тобі ближчий?',
+		text: 'Що обереш на вечерю?',
 		options: [
-			{ id: 'boardgames', emoji: '🎲', label: 'Настільні ігри' },
-			{ id: 'videogames', emoji: '🎮', label: 'Відеоігри' },
-			{ id: 'quiz', emoji: '🧠', label: 'Квізи та інтелектуальні ігри' },
-			{ id: 'active', emoji: '🏃', label: 'Активні командні ігри' },
-			{ id: 'cards', emoji: '🃏', label: 'Карти' },
-			{ id: 'no_games', emoji: '😅', label: 'Я не дуже люблю ігри' },
+			{ id: 'pizza', emoji: '🍕', label: 'Піцу', image: './images/q10-pizza.webp' },
+			{ id: 'sushi', emoji: '🍣', label: 'Суші', image: './images/q10-sushi.webp' },
+			{ id: 'burger', emoji: '🍔', label: 'Бургер', image: './images/q10-burger.webp' },
+			{ id: 'homemade', emoji: '🍲', label: 'Щось домашнє', image: './images/q10-homemade.webp' },
+			{ id: 'shawarma', emoji: '🌯', label: 'Шаурму', image: './images/q10-shawarma.webp' },
+			{ id: 'light', emoji: '🥗', label: 'Щось легке', image: './images/q10-light.webp' },
 		],
 	},
 	{
