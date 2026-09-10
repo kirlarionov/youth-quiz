@@ -170,10 +170,10 @@ function renderDone() {
  * `block: 'nearest'` leaves the page alone when it is already visible.
  */
 function revealNav() {
-	const nav = root.querySelector('.quiz__nav');
-	if (!nav) return;
-	const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
-	nav.scrollIntoView({ block: 'nearest', behavior: smooth ? 'smooth' : 'auto' });
+	// Instant, never smooth: an animation still running when the next question
+	// renders keeps scrolling and leaves the fresh screen halfway down.
+	// 'end' rather than 'nearest' so the whole footer clears the fold.
+	root.querySelector('.quiz__nav')?.scrollIntoView({ block: 'end', behavior: 'auto' });
 }
 
 function render() {
@@ -312,8 +312,10 @@ root.addEventListener('click', (event) => {
 		screen = 'quiz';
 		index = QUESTIONS.length - 1;
 	}
-	window.scrollTo(0, 0);
+	// Draw first, then jump: scrolling before the new markup exists leaves the
+	// old scroll height in charge and the question starts below the fold.
 	render();
+	window.scrollTo(0, 0);
 });
 
 // Counter and the state of "Далі" follow every keystroke, without re-rendering
