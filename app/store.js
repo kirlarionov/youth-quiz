@@ -1,7 +1,7 @@
 // Data access layer. The screens above it know nothing about Firestore —
 // swapping the database means rewriting firebase.js and nothing else.
 
-import { loadSession, writeAnswer, watchSessions, deleteAllSessions } from './firebase.js';
+import { loadSession, writeAnswers, watchSessions, deleteAllSessions } from './firebase.js';
 
 const SESSION_KEY = 'ym_session_id';
 
@@ -43,11 +43,11 @@ export function loadMyAnswers() {
 }
 
 /**
- * Records or replaces one answer. Safe to call repeatedly.
- * `text` carries the free-text answer; pass '' to clear a previous one.
+ * Records or replaces answers. `patch` maps field names to values, so several
+ * answers given in quick succession travel as one write.
  */
-export function saveAnswer(questionId, optionId, text = '') {
-	return writeAnswer(getMySessionId(), questionId, optionId, text);
+export function saveAnswers(patch) {
+	return writeAnswers(getMySessionId(), patch);
 }
 
 /**

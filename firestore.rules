@@ -8,15 +8,17 @@ rules_version = '2';
 // button has no account to authenticate with — see docs/spec.md for why that
 // trade-off was accepted. No other collection is reachable.
 //
-// A full session holds 15 answers + 15 free-text fields + updatedAt = 31
-// fields, so the size cap below only stops someone stuffing the document.
-// The 100-character limit on free text is enforced by the client only.
+// A full session holds 20 answers, a free-text field only where someone
+// actually typed one, and updatedAt. The cap below is meant to stop somebody
+// stuffing the document, not to bound ordinary use — keep it comfortably above
+// twice the number of questions. The 100-character limit on free text is
+// enforced by the client only.
 
 service cloud.firestore {
 	match /databases/{database}/documents {
 		match /sessions/{sessionId} {
 			allow read: if true;
-			allow create, update: if request.resource.data.size() <= 40;
+			allow create, update: if request.resource.data.size() <= 60;
 			allow delete: if true;
 		}
 	}

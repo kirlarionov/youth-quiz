@@ -1,5 +1,5 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_MAX_LENGTH, CUSTOM_TEXT_FIELD } from './questions.js';
-import { loadMyAnswers, saveAnswer } from './store.js';
+import { loadMyAnswers, saveAnswers } from './store.js';
 import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
 
 const root = document.getElementById('quiz');
@@ -186,7 +186,7 @@ function render() {
 // A card lights up the moment it is tapped, so a write that never lands would
 // be invisible. Firestore does not reject an offline write — it queues it and
 // the promise simply never settles — so silence is what has to be watched for.
-const SAVE_TIMEOUT = 10000;
+const SAVE_TIMEOUT = 25000;
 
 let unsaved = 0;
 let saveWarning = null;
@@ -223,12 +223,49 @@ function trackSave(write) {
 	write.then(() => settle(false), () => settle(true));
 }
 
+// Answers are buffered briefly instead of written one by one. Firestore takes
+// roughly one write per second on a single document, so someone clicking
+// straight through the quiz used to build a queue that took longer to drain
+// than the warning above waits for.
+const SAVE_DELAY = 1200;
+
+let pending = null;
+let pendingTimer = null;
+let inFlight = null;
+
+function scheduleFlush() {
+	if (pendingTimer || !pending) return;
+	pendingTimer = setTimeout(flushSaves, SAVE_DELAY);
+}
+
+function flushSaves() {
+	clearTimeout(pendingTimer);
+	pendingTimer = null;
+	// One write at a time: the next flush picks up whatever arrived meanwhile.
+	if (!pending || inFlight) return;
+
+	const patch = pending;
+	pending = null;
+	inFlight = saveAnswers(patch).finally(() => {
+		inFlight = null;
+		scheduleFlush();
+	});
+	trackSave(inFlight);
+}
+
 function record(optionId, text = '') {
 	const question = QUESTIONS[index];
 	answers[question.id] = optionId;
 	answers[CUSTOM_TEXT_FIELD(question.id)] = text;
-	trackSave(saveAnswer(question.id, optionId, text));
+	pending = { ...(pending ?? {}), [question.id]: optionId, [CUSTOM_TEXT_FIELD(question.id)]: text };
+	scheduleFlush();
 }
+
+// Never leave a buffered answer behind when the page goes away.
+addEventListener('pagehide', flushSaves);
+document.addEventListener('visibilitychange', () => {
+	if (document.visibilityState === 'hidden') flushSaves();
+});
 
 /**
  * Writes down whatever is in the free-text box and closes it. Called when the

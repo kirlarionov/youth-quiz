@@ -14,6 +14,7 @@ import {
 	getDocs,
 	setDoc,
 	deleteDoc,
+	deleteField,
 	onSnapshot,
 	serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
@@ -37,13 +38,17 @@ export async function loadSession(sessionId) {
 	return answers;
 }
 
-export async function writeAnswer(sessionId, questionId, optionId, text = '') {
-	// merge:true keeps the other answers and creates the document on first write.
-	await setDoc(
-		doc(db, SESSIONS, sessionId),
-		{ [questionId]: optionId, [`${questionId}_text`]: text, updatedAt: serverTimestamp() },
-		{ merge: true },
+/**
+ * Writes one or more answers in a single request. Empty values remove their
+ * field instead of storing a blank one: a session that kept every unused
+ * `qN_text` grew past the field cap in the security rules and was refused.
+ */
+export async function writeAnswers(sessionId, patch) {
+	const data = Object.fromEntries(
+		Object.entries(patch).map(([field, value]) => [field, value === '' ? deleteField() : value]),
 	);
+	// merge:true keeps the other answers and creates the document on first write.
+	await setDoc(doc(db, SESSIONS, sessionId), { ...data, updatedAt: serverTimestamp() }, { merge: true });
 }
 
 /** Removes every session document. Requires `allow delete` in the rules. */
