@@ -4,7 +4,9 @@ import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
 
 const root = document.getElementById('quiz');
 
-const START_IMAGE = './images/start-image.jpg';
+const START_VIDEO = './images/start-video.mp4';
+// Shown until the video has enough data, and whenever autoplay is refused.
+const START_POSTER = './images/start-poster.webp';
 
 let answers = {};
 let index = 0;
@@ -40,14 +42,21 @@ function renderStart() {
 	root.innerHTML = `
 		<div class="start">
 			<div class="start__backdrop"></div>
-			<img class="start__image" src="${START_IMAGE}" alt="" />
+			<video class="start__media" poster="${START_POSTER}" autoplay muted loop playsinline
+				preload="auto" disablepictureinpicture aria-hidden="true"></video>
 			<button class="start__cta" data-nav="begin">
 				${hasStarted() ? 'Продовжити' : 'Почати'}
 			</button>
 		</div>`;
 
-	root.querySelector('.start__backdrop').style.backgroundImage = `url("${START_IMAGE}")`;
-	wireImageFallbacks(root);
+	const video = root.querySelector('.start__media');
+	// Safari checks the property, not just the attribute, before allowing autoplay.
+	video.muted = true;
+	video.src = START_VIDEO;
+	// A refused autoplay leaves the poster in place, which is a fine fallback.
+	video.play().catch(() => {});
+
+	root.querySelector('.start__backdrop').style.backgroundImage = `url("${START_POSTER}")`;
 	preload(0);
 }
 
