@@ -258,17 +258,19 @@ body.has-save-error .quiz__nav {
 	filter: blur(36px) brightness(0.45) saturate(1.1);
 }
 
-.start__image {
+/* The clip is shot vertically, so on a phone it fills the screen edge to edge.
+   A wide screen would crop it to a strip, hence the landscape rule below. */
+.start__media {
 	position: relative;
-	/* Fit inside the viewport whole: an auto-sized grid row let the poster
-	   outgrow the screen, a flex box with definite height does not. */
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	object-fit: cover;
 }
 
-.start__image[hidden] {
-	display: none;
+@media (orientation: landscape) {
+	.start__media {
+		object-fit: contain;
+	}
 }
 
 .start__cta {
