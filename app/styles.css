@@ -603,9 +603,14 @@ body.has-save-error .quiz__nav {
 
 /* ============ fullscreen results slider ============ */
 
-/* The page behind must not scroll as well, or two scrollbars show up. Both
-   elements are locked: which of them owns the viewport scrollbar depends on
-   the browser. */
+/* Two scrollbars used to show up: the slide's own and the window's, the
+   latter owned by the long panel underneath. Locking overflow was not enough
+   in Chrome, so the panel is taken out of the flow entirely — with nothing
+   tall left in the document, the window has nothing to scroll. */
+body.stage-open .panel {
+	display: none;
+}
+
 html.stage-open,
 body.stage-open {
 	overflow: hidden;
