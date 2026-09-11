@@ -175,18 +175,14 @@ function renderDone() {
 }
 
 /**
- * Brings "Далі" into view after an answer is picked. With ten options the
- * button sits below the fold and people do not know it is there.
- * Doing nothing when the footer is already on screen is left to the browser:
- * a scroll to a visible target moves the page by nothing.
+ * Scrolls to the very bottom after an answer is picked. The footer is the last
+ * thing on the page and carries a generous bottom padding, so landing at the
+ * end of the document always leaves "Далі" clear of an in-app browser toolbar.
+ * Aligning on the button itself did not: those toolbars float over the page
+ * and are not part of the viewport the browser reports.
  */
 function revealNav() {
-	// Smooth, so that the page visibly travels instead of teleporting: a jump
-	// reads as a glitch. The nav handler cancels the animation if the next
-	// question arrives while it is still running.
-	// 'end' rather than 'nearest' so the whole footer clears the fold.
-	const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	root.querySelector('.quiz__nav')?.scrollIntoView({ block: 'end', behavior: smooth ? 'smooth' : 'auto' });
+	window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' });
 }
 
 function render() {

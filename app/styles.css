@@ -215,7 +215,7 @@ img {
 .quiz__nav {
 	display: flex;
 	gap: 10px;
-	padding: 16px 0 calc(64px + var(--safe-bottom));
+	padding: 16px 0 calc(96px + var(--safe-bottom));
 }
 
 .nav-btn {
