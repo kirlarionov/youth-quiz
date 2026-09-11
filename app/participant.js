@@ -1,6 +1,7 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_MAX_LENGTH, CUSTOM_TEXT_FIELD } from './questions.js';
 import { loadMyAnswers, saveAnswers } from './store.js';
 import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
+import { markInAppBrowser } from './viewport.js';
 
 const root = document.getElementById('quiz');
 
@@ -176,13 +177,16 @@ function renderDone() {
 /**
  * Brings "Далі" into view after an answer is picked. With ten options the
  * button sits below the fold and people do not know it is there.
- * `block: 'nearest'` leaves the page alone when it is already visible.
+ * Doing nothing when the footer is already on screen is left to the browser:
+ * a scroll to a visible target moves the page by nothing.
  */
 function revealNav() {
-	// Instant, never smooth: an animation still running when the next question
-	// renders keeps scrolling and leaves the fresh screen halfway down.
+	// Smooth, so that the page visibly travels instead of teleporting: a jump
+	// reads as a glitch. The nav handler cancels the animation if the next
+	// question arrives while it is still running.
 	// 'end' rather than 'nearest' so the whole footer clears the fold.
-	root.querySelector('.quiz__nav')?.scrollIntoView({ block: 'end', behavior: 'auto' });
+	const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	root.querySelector('.quiz__nav')?.scrollIntoView({ block: 'end', behavior: smooth ? 'smooth' : 'auto' });
 }
 
 function render() {
@@ -368,7 +372,11 @@ root.addEventListener('click', (event) => {
 	// Draw first, then jump: scrolling before the new markup exists leaves the
 	// old scroll height in charge and the question starts below the fold.
 	render();
+	// An instant scroll also cancels a smooth reveal that may still be running;
+	// the second one covers iOS, where the cancelled animation sometimes gets
+	// one more frame and lands the fresh question mid-page.
 	window.scrollTo(0, 0);
+	requestAnimationFrame(() => window.scrollTo(0, 0));
 });
 
 // Counter and the state of "Далі" follow every keystroke, without re-rendering
@@ -393,6 +401,8 @@ root.addEventListener('keydown', (event) => {
 // its button says "Почати" or "Продовжити", and where it leads. Someone who
 // taps through faster than the network answers may already have picked
 // something by now, and that wins over what the database returns.
+markInAppBrowser();
+
 loadMyAnswers()
 	.then((saved) => {
 		answers = { ...saved, ...answers };

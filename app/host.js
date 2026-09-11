@@ -1,6 +1,7 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_TEXT_FIELD } from './questions.js';
 import { subscribeToSessions, clearAllAnswers } from './store.js';
 import { escapeHtml, wireImageFallbacks } from './html.js';
+import { markInAppBrowser } from './viewport.js';
 
 const panel = document.getElementById('panel');
 const stage = document.getElementById('stage');
@@ -124,6 +125,41 @@ function renderConfirm() {
 
 // --- results slider ---------------------------------------------------------
 
+// iOS Safari has no Fullscreen API for regular elements, and calling the
+// missing method threw before anything could catch it — the button looked
+// alive and did nothing. Where there is no full screen, there is no button:
+// the slider already covers the page, only the browser chrome stays.
+const ROOT = document.documentElement;
+const CAN_FULLSCREEN =
+	document.fullscreenEnabled !== false && Boolean(ROOT.requestFullscreen || ROOT.webkitRequestFullscreen);
+
+const isFullscreen = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+
+// The corners of a frame, as on a video player: pushed to the edges to expand,
+// pulled to the centre to collapse. The whole shape differs between the two,
+// which is what reads at a glance — a mirrored arrowhead does not. (Unicode
+// offered no such pair: ⤢ and ⤡ are one arrow mirrored, both read as expand.)
+const ICON_EXPAND = '<path d="M8 3H3v5" /><path d="M16 3h5v5" /><path d="M16 21h5v-5" /><path d="M8 21H3v-5" />';
+const ICON_COLLAPSE = '<path d="M3 8h5V3" /><path d="M21 8h-5V3" /><path d="M21 16h-5v5" /><path d="M3 16h5v5" />';
+
+function fullscreenButton() {
+	if (!CAN_FULLSCREEN) return '';
+	const on = isFullscreen();
+	const label = on ? 'Вийти з повноекранного режиму (F)' : 'На весь екран (F)';
+	return `<button class="stage__icon" data-stage="fullscreen" title="${label}" aria-label="${label}">
+			<svg class="stage__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+				stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${on ? ICON_COLLAPSE : ICON_EXPAND}</svg>
+		</button>`;
+}
+
+// Leaving full screen with Esc or the system gesture never reaches the click
+// handler, and the icon would stay on "collapse".
+for (const event of ['fullscreenchange', 'webkitfullscreenchange']) {
+	document.addEventListener(event, () => {
+		if (stageOpen) renderStage();
+	});
+}
+
 function renderStage() {
 	// The panel behind keeps its own scrollbar unless it is locked while the
 	// slide is up.
@@ -158,9 +194,7 @@ function renderStage() {
 	stage.innerHTML = `
 		<div class="stage__top">
 			<span class="stage__count"></span>
-			<button class="stage__icon" data-stage="fullscreen" title="На весь екран (F)" aria-label="На весь екран">
-				${document.fullscreenElement ? '⤡' : '⤢'}
-			</button>
+			${fullscreenButton()}
 			<button class="stage__icon" data-stage="close" title="Закрити (Esc)" aria-label="Закрити">✕</button>
 		</div>
 		<div class="stage__body">
@@ -226,7 +260,11 @@ function updateStage() {
 
 /** Full screen is what the projector wants; the icon follows the state. */
 function toggleFullscreen() {
-	const done = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+	if (!CAN_FULLSCREEN) return;
+	const root = document.documentElement;
+	const done = isFullscreen()
+		? (document.exitFullscreen ?? document.webkitExitFullscreen).call(document)
+		: (root.requestFullscreen ?? root.webkitRequestFullscreen).call(root);
 	Promise.resolve(done)
 		.catch(() => {})
 		.then(renderStage);
@@ -299,4 +337,5 @@ subscribeToSessions(
 	},
 );
 
+markInAppBrowser();
 renderPanel();
