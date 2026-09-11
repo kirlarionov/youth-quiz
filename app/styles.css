@@ -42,6 +42,24 @@ html.in-app-browser {
 	--muted: #9a9aa8;
 }
 
+/* The operator screen goes to the projector, and a weak projector washes a
+   dark grey out to murk. Pure black holds, with the surfaces lifted just
+   enough to read against it. Deliberately independent of the theme switch:
+   the colour of the quiz is a taste question, this one is about the room. */
+body.host {
+	--bg: #000000;
+	--surface: #1b1b1f;
+	--surface-hi: #27272d;
+	--line: #3a3a44;
+	--muted: #bdbdc7;
+	--text: #ffffff;
+}
+
+/* The switch belongs to the quiz, where the two schemes are compared. */
+body.host .theme-switch {
+	display: none;
+}
+
 /* Temporary, for the team to compare the two. Goes away with app/theme.js. */
 .theme-switch {
 	position: fixed;
@@ -215,7 +233,7 @@ img {
 .quiz__nav {
 	display: flex;
 	gap: 10px;
-	padding: 16px 0 calc(96px + var(--safe-bottom));
+	padding: 16px 0 calc(124px + var(--safe-bottom));
 }
 
 .nav-btn {
