@@ -4,9 +4,9 @@
 	/* The brown and the cyan of the event poster, inverted: the page is a deep
 	   shade of that brown, and the cards carry the poster brown itself. */
 	--bg: #241c16;
-	--surface: #98765b;
-	--surface-hi: #a9866a;
-	--line: #b1906f;
+	--surface: #6b523e;
+	--surface-hi: #7c6049;
+	--line: #8b6d53;
 	--text: #fdf8f3;
 	/* Readable both on the dark page and on a brown card. */
 	--muted: #d6c3b0;
