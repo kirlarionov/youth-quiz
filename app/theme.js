@@ -1,10 +1,10 @@
-// Temporary switch between the two colour schemes while the team picks one.
+// Temporary switch between the colour schemes while the team picks one.
 // Delete this file, its <script> tags and the [data-theme] blocks in the CSS
 // once the choice is made.
 
 const KEY = 'ym_theme';
-const THEMES = ['brown', 'slate'];
-const LABELS = { brown: 'Коричнева', slate: 'Сіра' };
+const THEMES = ['brown', 'slate', 'black'];
+const LABELS = { brown: 'Коричнева', slate: 'Сіра', black: 'Чорна' };
 
 function stored() {
 	try {
