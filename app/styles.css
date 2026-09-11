@@ -1,15 +1,20 @@
 :root {
 	/* Paints native scrollbars, form controls and selection dark. */
 	color-scheme: dark;
-	--bg: #101014;
-	--surface: #1a1a21;
-	--surface-hi: #23232c;
-	--line: #2e2e39;
-	--text: #f2f2f5;
-	--muted: #9a9aa8;
-	/* Sampled from the sky of the event poster (images/start-poster.webp). */
-	--accent: #01aeca;
-	--accent-soft: rgba(1, 174, 202, 0.16);
+	/* The brown and the cyan of the event poster, inverted: the page is a deep
+	   shade of that brown, and the cards carry the poster brown itself. */
+	--bg: #241c16;
+	--surface: #98765b;
+	--surface-hi: #a9866a;
+	--line: #b1906f;
+	--text: #fdf8f3;
+	/* Readable both on the dark page and on a brown card. */
+	--muted: #d6c3b0;
+	--accent: #0cadca;
+	/* A dimmed cyan rather than a translucent one: over brown, transparency
+	   turned the accent muddy green. */
+	--accent-soft: #0b5f70;
+	--accent-strong: #0f8ba3;
 	/* Text and icons that sit on top of --accent. */
 	--accent-ink: #04222a;
 	--radius: 16px;
@@ -824,7 +829,7 @@ body.stage-open {
 }
 
 .result--top .result__fill {
-	background: rgba(1, 174, 202, 0.32);
+	background: var(--accent-strong);
 }
 
 /* Slider on a phone: arrows float above the bottom edge instead of
