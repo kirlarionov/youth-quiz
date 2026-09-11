@@ -1,15 +1,6 @@
 :root {
 	/* Paints native scrollbars, form controls and selection dark. */
 	color-scheme: dark;
-	/* The brown and the cyan of the event poster, inverted: the page is a deep
-	   shade of that brown, and the cards carry the poster brown itself. */
-	--bg: #241c16;
-	--surface: #6b523e;
-	--surface-hi: #7c6049;
-	--line: #8b6d53;
-	--text: #fdf8f3;
-	/* Readable both on the dark page and on a brown card. */
-	--muted: #d6c3b0;
 	--accent: #0cadca;
 	/* A dimmed cyan rather than a translucent one: over brown, transparency
 	   turned the accent muddy green. */
@@ -17,6 +8,7 @@
 	--accent-strong: #0f8ba3;
 	/* Text and icons that sit on top of --accent. */
 	--accent-ink: #04222a;
+	--text: #fdf8f3;
 	--radius: 16px;
 	--font: 'Segoe UI', system-ui, -apple-system, sans-serif;
 	/* Reserved strip at the bottom edge: the notch inset, or the toolbar of an
@@ -29,6 +21,45 @@
    whatever sits at the bottom edge. */
 html.in-app-browser {
 	--chrome-bottom: 84px;
+}
+
+/* The brown of the event poster, deepened for the page and the cards. */
+:root,
+:root[data-theme='brown'] {
+	--bg: #241c16;
+	--surface: #6b523e;
+	--surface-hi: #7c6049;
+	--line: #8b6d53;
+	--muted: #d6c3b0;
+}
+
+/* The neutral scheme the project started with, kept for comparison. */
+:root[data-theme='slate'] {
+	--bg: #101014;
+	--surface: #1a1a21;
+	--surface-hi: #23232c;
+	--line: #2e2e39;
+	--muted: #9a9aa8;
+}
+
+/* Temporary, for the team to compare the two. Goes away with app/theme.js. */
+.theme-switch {
+	position: fixed;
+	left: 12px;
+	bottom: calc(12px + var(--safe-bottom));
+	z-index: 40;
+	padding: 7px 12px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--surface);
+	color: var(--muted);
+	font-size: 12px;
+	opacity: 0.7;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.theme-switch:hover {
+	opacity: 1;
 }
 
 * {
