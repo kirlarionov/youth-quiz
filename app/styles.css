@@ -208,11 +208,14 @@ img {
 }
 
 /* Sits right under the answers and scrolls with them. Pinning it to the
-   viewport put it under the mobile browser chrome. */
+   viewport put it under the mobile browser chrome.
+   The generous bottom padding is deliberate: in-app browsers (Telegram and
+   the like) float a toolbar over the page, and not all of them can be
+   detected, so the buttons keep their distance from the edge everywhere. */
 .quiz__nav {
 	display: flex;
 	gap: 10px;
-	padding: 16px 0 calc(24px + var(--safe-bottom));
+	padding: 16px 0 calc(64px + var(--safe-bottom));
 }
 
 .nav-btn {
@@ -344,7 +347,7 @@ body.has-save-error .quiz__nav {
 	position: absolute;
 	z-index: 2;
 	left: 50%;
-	bottom: calc(28px + var(--safe-bottom));
+	bottom: calc(44px + var(--safe-bottom));
 	transform: translateX(-50%);
 	width: min(420px, calc(100% - 40px));
 	min-height: 56px;
