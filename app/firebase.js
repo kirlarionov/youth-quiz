@@ -56,6 +56,11 @@ export async function touchSession(sessionId) {
 	await setDoc(doc(db, SESSIONS, sessionId), { lastSeen: serverTimestamp() }, { merge: true });
 }
 
+/** Marks the session as gone, so it leaves the online count at once. */
+export async function leaveSession(sessionId) {
+	await setDoc(doc(db, SESSIONS, sessionId), { lastSeen: 0 }, { merge: true });
+}
+
 /** Removes every session document. Requires `allow delete` in the rules. */
 export async function deleteAllSessions() {
 	const snapshot = await getDocs(collection(db, SESSIONS));

@@ -1,5 +1,5 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_MAX_LENGTH, CUSTOM_TEXT_FIELD } from './questions.js';
-import { loadMyAnswers, saveAnswers, touchPresence } from './store.js';
+import { loadMyAnswers, saveAnswers, touchPresence, leavePresence } from './store.js';
 import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
 import { markInAppBrowser } from './viewport.js';
 
@@ -276,9 +276,10 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // Presence for the operator's "online now" counter: a heartbeat while the page
-// is actually on screen. A locked phone or a background tab stops beating and
-// drops out of the count on its own.
-const PRESENCE_EVERY = 30000;
+// is on screen, and a goodbye the moment it is not. The goodbye is what makes
+// the count react quickly; the heartbeat only covers goodbyes that never arrive
+// (a dropped connection), and every beat spends the same write quota as answers.
+const PRESENCE_EVERY = 20000;
 let presenceTimer = null;
 
 function beat() {
@@ -293,6 +294,7 @@ function syncPresence() {
 	} else if (!visible && presenceTimer) {
 		clearInterval(presenceTimer);
 		presenceTimer = null;
+		leavePresence().catch(() => {});
 	}
 }
 

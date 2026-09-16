@@ -494,9 +494,11 @@ body.has-save-error .quiz__nav {
 	line-height: 1.5;
 }
 
+/* Answers on the left, online on the right, mirroring each other. */
 .panel__stats {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	gap: 10px;
 	margin-bottom: 20px;
 }
@@ -505,22 +507,30 @@ body.has-save-error .quiz__nav {
 	margin-bottom: 0;
 }
 
-/* A live dot, so "online" reads as a present-tense figure at a glance. */
-.panel__stat--online b::before {
+/* A live dot in the corner, so "online" reads as a present-tense figure at a
+   glance. */
+.panel__stat--online {
+	position: relative;
+}
+
+.panel__stat--online::before {
 	content: '';
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	margin-right: 10px;
+	position: absolute;
+	/* Centred on the rounded edge itself: with a 16px radius the curve passes
+	   about 5px in from the box corner, so the dot overlaps the border there
+	   instead of floating off the rounding. */
+	top: -3px;
+	left: -3px;
+	width: 16px;
+	height: 16px;
 	border-radius: 50%;
 	background: #3ecf8e;
-	box-shadow: 0 0 0 4px rgba(62, 207, 142, 0.2);
-	vertical-align: middle;
+	box-shadow: 0 0 0 6px rgba(62, 207, 142, 0.22);
 }
 
 .panel__stat {
 	display: inline-flex;
-	align-items: baseline;
+	align-items: center;
 	gap: 8px;
 	padding: 12px 18px;
 	border-radius: var(--radius);
@@ -820,8 +830,8 @@ body.stage-open {
 	inset: 0 auto 0 0;
 	width: 0;
 	border-radius: 12px;
-	background: var(--accent-soft);
-	border-right: 3px solid var(--accent);
+	/* White on black: the strongest contrast a weak projector can still show. */
+	background: #ffffff;
 	transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -854,8 +864,11 @@ body.stage-open {
 	font-weight: 500;
 }
 
-.result--top .result__fill {
-	background: var(--accent-strong);
+.result__label--on-fill {
+	color: #000000;
+	clip-path: inset(0 100% 0 0);
+	/* Same timing as the fill, so the black text grows with the bar. */
+	transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Slider on a phone: arrows float above the bottom edge instead of
@@ -897,7 +910,6 @@ body.stage-open {
 	margin-bottom: 10px;
 	color: var(--muted);
 	font-size: clamp(12px, 1.2vw, 18px);
-	text-transform: lowercase;
 }
 
 .own__list {
@@ -932,4 +944,96 @@ body.stage-open {
 	background: var(--surface);
 	font-size: clamp(13px, 1.3vw, 21px);
 	overflow-wrap: anywhere;
+}
+
+/* ============ operator screen, sized for the projector ============ */
+
+/* Read from across a room, so everything on host.html runs a size up. The
+   quiz shares some of these classes, hence the body.host scope. */
+body.host .panel h1 {
+	font-size: clamp(24px, 5vw, 34px);
+}
+
+body.host .panel__hint {
+	font-size: 16px;
+}
+
+body.host .panel__stat {
+	padding: 14px 22px;
+	font-size: 19px;
+}
+
+body.host .panel__stat b {
+	font-size: clamp(32px, 7vw, 42px);
+}
+
+body.host .panel__actions .nav-btn {
+	min-height: 58px;
+	font-size: 19px;
+}
+
+body.host .panel__row {
+	padding: 14px 18px;
+	font-size: 18px;
+}
+
+body.host .panel__danger {
+	font-size: 15px;
+}
+
+body.host .stage__top {
+	font-size: clamp(15px, 1.7vw, 22px);
+}
+
+/* A quiet aside next to the controls, not a headline. */
+body.host .stage__count {
+	font-size: clamp(12px, 1.1vw, 16px);
+}
+
+/* Question number and total, centred over the slide regardless of what sits
+   at either end of the bar. The sticky header is its positioning context. */
+.stage__progress {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+/* The question number is what the room looks for; it leads the line. */
+.stage__index {
+	color: var(--text);
+	font-size: 1.35em;
+	font-weight: 600;
+}
+
+body.host .stage__question {
+	font-size: clamp(24px, 4.8vw, 68px);
+}
+
+/* Half as thick again as the base bar, for the projector. */
+body.host .result__track {
+	height: clamp(66px, 9.75vh, 105px);
+}
+
+body.host .result__label {
+	font-size: clamp(20px, 2.6vw, 40px);
+}
+
+body.host .result__value {
+	font-size: clamp(22px, 2.6vw, 42px);
+}
+
+body.host .own__title {
+	font-size: clamp(14px, 1.5vw, 22px);
+}
+
+/* White chips with black text, like the bars: the projector's best contrast. */
+body.host .own__item {
+	padding: clamp(9px, 1vw, 14px) clamp(16px, 1.6vw, 24px);
+	border-color: #ffffff;
+	background: #ffffff;
+	color: #000000;
+	font-size: clamp(18px, 2vw, 32px);
+	font-weight: 600;
 }

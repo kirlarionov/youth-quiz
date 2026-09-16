@@ -53,7 +53,7 @@
 | `q10-shawarma.webp` | Шаурма | [Shawarma-sandwich-01](https://commons.wikimedia.org/wiki/File:Shawarma-sandwich-01.jpg) | Vera Yu and David Li | CC BY 2.0 |
 | `q10-light.webp` | Щось легке | [Liat Portal for Foodie Disorder - Mixed vegetable salad with fresh herbs](https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Mixed_vegetable_salad_with_fresh_herbs.jpg) | HaJunkiyada | CC BY-SA 4.0 |
 
-> **Примечание.** `q2-football.webp` и `q6-party.webp` предоставлены
+> **Примечание.** `q2-football.webp`, `q6-party.webp`, `q5-night.webp` и `q7-worship.webp` предоставлены
 > владельцем проекта. В отличие от остальных файлов они не под свободной
 > лицензией: права принадлежат съёмочным агентствам.
 
@@ -62,8 +62,8 @@
 | Файл | Вариант | Оригинал | Автор | Лицензия |
 |---|---|---|---|---|
 | `q5-morning.webp` | Ранок | [Morning sky shortly after sunrise, High Desert, California](https://commons.wikimedia.org/wiki/File:Morning_sky_shortly_after_sunrise,_High_Desert,_California.jpg) | Jessie Eastland | CC BY-SA 3.0 |
-| `q5-night.webp` | Ніч | [Barcelona night stars NachoMG](https://commons.wikimedia.org/wiki/File:Barcelona_night_stars_NachoMG.jpg) | Nacho MG | CC BY-SA 4.0 |
-| `q5-both.webp` | І там, і там | [Coffee-desk-laptop-notebook (24244320481)](https://commons.wikimedia.org/wiki/File:Coffee-desk-laptop-notebook_(24244320481).jpg) | www.Pixel.la Free Stock Photos | CC0 |
+| `q5-night.webp` | Ніч | Кадр, наданий замовником | — | несвободная, см. примечание |
+| `q5-both.webp` | І там, і там | Склейка: [2025-06-29 D300-7538 Achim-Lammerts Erlenbach-Kandel](https://commons.wikimedia.org/wiki/File:2025-06-29_D300-7538_Achim-Lammerts_Erlenbach-Kandel.jpg) і [FullMoon2010](https://commons.wikimedia.org/wiki/File:FullMoon2010.jpg) | Achim Lammerts (Syntaxys); Gregory H. Revera | CC BY-SA 4.0; CC BY-SA 3.0 |
 | `q5-neither.webp` | Не люблю прокидатися | [Girl asleep with her smooth Collie](https://commons.wikimedia.org/wiki/File:Girl_asleep_with_her_smooth_Collie.JPG) | David Shankbone | CC BY 3.0 |
 
 ## Вопрос 7 — «Що ти швидше ввімкнеш у машині?»
@@ -71,7 +71,7 @@
 | Файл | Вариант | Оригинал | Автор | Лицензия |
 |---|---|---|---|---|
 | `q7-pop.webp` | Поп | [The Script (8639490457)](https://commons.wikimedia.org/wiki/File:The_Script_(8639490457).jpg) | Eva Rinaldi | CC BY-SA 2.0 |
-| `q7-worship.webp` | Worship | [Crusade Conference South Sudanese Refugees and Host Communities, Rhino Refugee Camp, Uganda 2026](https://commons.wikimedia.org/wiki/File:Crusade_Conference_South_Sudanese_Refugees_and_Host_Communities,_Rhino_Refugee_Camp,_Uganda_2026.jpg) | Oliversamson1 | CC0 |
+| `q7-worship.webp` | Worship | Кадр, наданий замовником | — | несвободная, см. примечание |
 | `q7-rock.webp` | Рок | [Guitarist performs on stage during a nighttime concert](https://commons.wikimedia.org/wiki/File:Guitarist_performs_on_stage_during_a_nighttime_concert.jpg) | Shixart1985 | CC BY 2.0 |
 | `q7-electronic.webp` | Електронна музика | [DFC 5183 Hands-on mixing a DJ tweaks levels and cues glowing controls on a Pioneer DJ mixer under red club lights](https://commons.wikimedia.org/wiki/File:DFC_5183_Hands-on_mixing_a_DJ_tweaks_levels_and_cues_glowing_controls_on_a_Pioneer_DJ_mixer_under_red_club_lights.jpg) | PattayaPatrol | CC BY-SA 4.0 |
 | `q7-calm.webp` | Спокійна музика | [Boesendorfer-5075415](https://commons.wikimedia.org/wiki/File:Boesendorfer-5075415.jpg) | ermell | CC BY-SA 3.0 |
@@ -86,10 +86,10 @@
 | `q6-home.webp` | Посиденьки вдома | [Ready for company.](https://www.flickr.com/photos/8561899@N04/2503780641) | Banjo Brown | CC BY 2.0 |
 | `q6-cafe.webp` | Кафе / ресторан | [Figaro Coffee shop interior in Salawag, Dasmariñas, Cavite — 19 Mar 2022](https://commons.wikimedia.org/wiki/File:Figaro_Coffee_shop_interior_in_Salawag,_Dasmariñas,_Cavite_—_19_Mar_2022.jpg) | UndueMarmot | CC BY 4.0 |
 | `q6-bowling.webp` | Боулінг | [Pro Shop ready to roll at Potomac Lanes Bowling Center 1058791](https://commons.wikimedia.org/wiki/File:Pro_Shop_ready_to_roll_at_Potomac_Lanes_Bowling_Center_1058791.jpg) | Lt.Cmdr. Jim Remington | Public domain |
-| `q6-nature.webp` | Природа | [A tent, bear food box and campfire ring in a campsite 3W6A3665 (53056105180)](https://commons.wikimedia.org/wiki/File:A_tent,_bear_food_box_and_campfire_ring_in_a_campsite_3W6A3665_(53056105180).jpg) | Forest Service - Northern Region | Public domain |
+| `q6-nature.webp` | Природа | [Dülmen, Merfeld, Von-Galen-Park -- 2013 -- 2367](https://commons.wikimedia.org/wiki/File:Dülmen,_Merfeld,_Von-Galen-Park_--_2013_--_2367.jpg) | Dietmar Rabich | CC BY-SA 4.0 |
 | `q6-citywalk.webp` | Гуляти містом | [View east along Calle Francisco Madera from Calle Bolivar, Mexico City](https://commons.wikimedia.org/wiki/File:View_east_along_Calle_Francisco_Madera_from_Calle_Bolivar,_Mexico_City.jpg) | Daniel Case | CC BY-SA 3.0 |
 | `q6-boardgames.webp` | Настільні ігри | [board game night](https://www.flickr.com/photos/36770908@N08/4421257399) | gfairchild | CC BY 2.0 |
-| `q6-trip.webp` | Кудись поїхати | [Driving on winding forest highway in California (Unsplash)](https://commons.wikimedia.org/wiki/File:Driving_on_winding_forest_highway_in_California_(Unsplash).jpg) | Vladimir Kudinov madbyte | CC0 |
+| `q6-trip.webp` | Кудись поїхати | [Road to somewhere](https://www.flickr.com/photos/36319440@N05/6847360600) | geopungo | CC BY 2.0 |
 | `q6-party.webp` | Велика тусовка | Кадр, наданий замовником | — | несвободная, см. примечание |
 
 ## Вопрос 3 — «Як виглядає твій ідеальний вечір?»

@@ -46,9 +46,10 @@ const answeredCount = () => sessions.filter((s) => QUESTIONS.some((q) => s[q.id]
 
 // --- panel ------------------------------------------------------------------
 
-// Someone counts as online while their heartbeat (every 30s) is fresh. Three
-// missed beats' worth of slack absorbs a slow network and small clock drift.
-const ONLINE_WINDOW = 90000;
+// Someone counts as online while their heartbeat (every 20s) is fresh. The
+// slack covers one missed beat and small clock drift; a clean exit is instant
+// anyway, because the page says goodbye.
+const ONLINE_WINDOW = 50000;
 const onlineCount = () => sessions.filter((s) => Date.now() - (s.lastSeen || 0) < ONLINE_WINDOW).length;
 
 function renderPanel() {
@@ -63,12 +64,11 @@ function renderPanel() {
 	}).join('');
 
 	panel.innerHTML = `
-		<h1>Екран ведучого</h1>
 		${liveError ? '<div class="panel__error">Зв’язок із базою втрачено — цифри більше не оновлюються. Онови сторінку.</div>' : ''}
 		<p class="panel__hint">У слайдері: стрілки — гортати, F — на весь екран, Esc — закрити.</p>
 		<div class="panel__stats">
-			<div class="panel__stat panel__stat--online"><b>${onlineCount()}</b> зараз онлайн</div>
-			<div class="panel__stat"><b>${answeredCount()}</b> учасників відповіли</div>
+			<div class="panel__stat">Учасників відповіли: <b>${answeredCount()}</b></div>
+			<div class="panel__stat panel__stat--online">Онлайн: <b>${onlineCount()}</b></div>
 		</div>
 		<div class="panel__actions">
 			<button class="nav-btn nav-btn--primary" data-action="open">Показати результати</button>
@@ -192,6 +192,7 @@ function renderStage() {
 					<div class="result__track">
 						<div class="result__fill"></div>
 						<div class="result__label">${escapeHtml(option.label)}</div>
+						<div class="result__label result__label--on-fill" aria-hidden="true">${escapeHtml(option.label)}</div>
 					</div>
 					<div class="result__value"><span></span><small></small></div>
 				</div>`,
@@ -202,6 +203,7 @@ function renderStage() {
 	stage.innerHTML = `
 		<div class="stage__top">
 			<span class="stage__count"></span>
+			<span class="stage__progress"><span class="stage__index"></span><span class="stage__answered"></span></span>
 			${fullscreenButton()}
 			<button class="stage__icon" data-stage="close" title="Закрити (Esc)" aria-label="Закрити">✕</button>
 		</div>
@@ -240,20 +242,27 @@ function updateStage() {
 		const percent = total ? Math.round((count / total) * 100) : 0;
 		row.style.order = String(rank);
 		row.classList.toggle('result--top', count > 0 && count === max);
-		row.querySelector('.result__fill').style.width = `${max ? (count / max) * 100 : 0}%`;
+		const width = max ? (count / max) * 100 : 0;
+		row.querySelector('.result__fill').style.width = `${width}%`;
+		// The label is drawn twice: white over the dark track, black over the white
+		// fill. The black copy is clipped to exactly the filled part, so a label
+		// reads correctly wherever the bar happens to end.
+		row.querySelector('.result__label--on-fill').style.clipPath = `inset(0 ${100 - width}% 0 0)`;
 		row.querySelector('.result__value span').textContent = String(count);
 		row.querySelector('.result__value small').textContent = `${percent}%`;
 	});
 
-	stage.querySelector('.stage__count').textContent =
-		`${index + 1} з ${QUESTIONS.length} · відповіли ${total + custom.length} · онлайн ${onlineCount()}` +
-		(liveError ? ' · зв’язок втрачено' : '');
+	// Free-text answers sit outside the bars, so their count gets its own corner.
+	stage.querySelector('.stage__count').textContent = `Своїх відповідей: ${custom.length}`;
+	stage.querySelector('.stage__index').textContent = `${index + 1} з ${QUESTIONS.length}`;
+	stage.querySelector('.stage__answered').textContent =
+		` · відповіли ${total + custom.length}` + (liveError ? ' · зв’язок втрачено' : '');
 
 	// These strings were typed by participants, so they are assigned as text
 	// and never interpolated into markup.
 	const own = stage.querySelector('.own');
 	own.hidden = custom.length === 0;
-	own.querySelector('.own__title').textContent = `Свої варіанти · ${custom.length} · поза статистикою`;
+	own.querySelector('.own__title').textContent = `Свої варіанти: ${custom.length}`;
 	const list = own.querySelector('.own__list');
 	list.textContent = '';
 	for (const text of custom) {
@@ -331,11 +340,12 @@ document.addEventListener('keydown', (event) => {
 	renderStage();
 });
 
-// Nobody writes when a person leaves, so the counter has to age on its own.
+// A lost connection sends no goodbye, so stale sessions have to age out on
+// their own. This only recounts what is already loaded — no database reads.
 setInterval(() => {
 	renderPanel();
 	updateStage();
-}, 10000);
+}, 5000);
 
 subscribeToSessions(
 	(next) => {

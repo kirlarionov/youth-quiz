@@ -1,7 +1,7 @@
 // Data access layer. The screens above it know nothing about Firestore —
 // swapping the database means rewriting firebase.js and nothing else.
 
-import { loadSession, writeAnswers, touchSession, watchSessions, deleteAllSessions } from './firebase.js';
+import { loadSession, writeAnswers, touchSession, leaveSession, watchSessions, deleteAllSessions } from './firebase.js';
 
 const SESSION_KEY = 'ym_session_id';
 
@@ -53,6 +53,11 @@ export function saveAnswers(patch) {
 /** Heartbeat for the "online now" counter on the operator screen. */
 export function touchPresence() {
 	return touchSession(getMySessionId());
+}
+
+/** Best-effort goodbye when the page leaves the screen. */
+export function leavePresence() {
+	return leaveSession(getMySessionId());
 }
 
 /**
