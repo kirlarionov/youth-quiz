@@ -1,5 +1,5 @@
 import { QUESTIONS, CUSTOM_ID, CUSTOM_MAX_LENGTH, CUSTOM_TEXT_FIELD } from './questions.js';
-import { loadMyAnswers, saveAnswers } from './store.js';
+import { loadMyAnswers, saveAnswers, touchPresence } from './store.js';
 import { escapeHtml, sanitizeText, wireImageFallbacks } from './html.js';
 import { markInAppBrowser } from './viewport.js';
 
@@ -274,6 +274,30 @@ addEventListener('pagehide', flushSaves);
 document.addEventListener('visibilitychange', () => {
 	if (document.visibilityState === 'hidden') flushSaves();
 });
+
+// Presence for the operator's "online now" counter: a heartbeat while the page
+// is actually on screen. A locked phone or a background tab stops beating and
+// drops out of the count on its own.
+const PRESENCE_EVERY = 30000;
+let presenceTimer = null;
+
+function beat() {
+	touchPresence().catch(() => {});
+}
+
+function syncPresence() {
+	const visible = document.visibilityState === 'visible';
+	if (visible && !presenceTimer) {
+		beat();
+		presenceTimer = setInterval(beat, PRESENCE_EVERY);
+	} else if (!visible && presenceTimer) {
+		clearInterval(presenceTimer);
+		presenceTimer = null;
+	}
+}
+
+document.addEventListener('visibilitychange', syncPresence);
+syncPresence();
 
 /**
  * Writes down whatever is in the free-text box and closes it. Called when the

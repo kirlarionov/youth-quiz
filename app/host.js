@@ -46,6 +46,11 @@ const answeredCount = () => sessions.filter((s) => QUESTIONS.some((q) => s[q.id]
 
 // --- panel ------------------------------------------------------------------
 
+// Someone counts as online while their heartbeat (every 30s) is fresh. Three
+// missed beats' worth of slack absorbs a slow network and small clock drift.
+const ONLINE_WINDOW = 90000;
+const onlineCount = () => sessions.filter((s) => Date.now() - (s.lastSeen || 0) < ONLINE_WINDOW).length;
+
 function renderPanel() {
 	const rows = QUESTIONS.map((question, i) => {
 		const { total, custom } = tally(question);
@@ -61,7 +66,10 @@ function renderPanel() {
 		<h1>Екран ведучого</h1>
 		${liveError ? '<div class="panel__error">Зв’язок із базою втрачено — цифри більше не оновлюються. Онови сторінку.</div>' : ''}
 		<p class="panel__hint">У слайдері: стрілки — гортати, F — на весь екран, Esc — закрити.</p>
-		<div class="panel__stat"><b>${answeredCount()}</b> учасників відповіли</div>
+		<div class="panel__stats">
+			<div class="panel__stat panel__stat--online"><b>${onlineCount()}</b> зараз онлайн</div>
+			<div class="panel__stat"><b>${answeredCount()}</b> учасників відповіли</div>
+		</div>
 		<div class="panel__actions">
 			<button class="nav-btn nav-btn--primary" data-action="open">Показати результати</button>
 		</div>
@@ -238,7 +246,7 @@ function updateStage() {
 	});
 
 	stage.querySelector('.stage__count').textContent =
-		`${index + 1} з ${QUESTIONS.length} · відповіли ${total + custom.length}` +
+		`${index + 1} з ${QUESTIONS.length} · відповіли ${total + custom.length} · онлайн ${onlineCount()}` +
 		(liveError ? ' · зв’язок втрачено' : '');
 
 	// These strings were typed by participants, so they are assigned as text
@@ -322,6 +330,12 @@ document.addEventListener('keydown', (event) => {
 	event.preventDefault();
 	renderStage();
 });
+
+// Nobody writes when a person leaves, so the counter has to age on its own.
+setInterval(() => {
+	renderPanel();
+	updateStage();
+}, 10000);
 
 subscribeToSessions(
 	(next) => {

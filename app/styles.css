@@ -494,6 +494,30 @@ body.has-save-error .quiz__nav {
 	line-height: 1.5;
 }
 
+.panel__stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.panel__stats .panel__stat {
+	margin-bottom: 0;
+}
+
+/* A live dot, so "online" reads as a present-tense figure at a glance. */
+.panel__stat--online b::before {
+	content: '';
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 10px;
+	border-radius: 50%;
+	background: #3ecf8e;
+	box-shadow: 0 0 0 4px rgba(62, 207, 142, 0.2);
+	vertical-align: middle;
+}
+
 .panel__stat {
 	display: inline-flex;
 	align-items: baseline;

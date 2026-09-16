@@ -34,7 +34,7 @@ const SESSIONS = 'sessions';
 export async function loadSession(sessionId) {
 	const snapshot = await getDoc(doc(db, SESSIONS, sessionId));
 	if (!snapshot.exists()) return {};
-	const { updatedAt, ...answers } = snapshot.data();
+	const { updatedAt, lastSeen, ...answers } = snapshot.data();
 	return answers;
 }
 
@@ -51,6 +51,11 @@ export async function writeAnswers(sessionId, patch) {
 	await setDoc(doc(db, SESSIONS, sessionId), { ...data, updatedAt: serverTimestamp() }, { merge: true });
 }
 
+/** Marks the session as present right now. Separate from updatedAt, which tracks answers. */
+export async function touchSession(sessionId) {
+	await setDoc(doc(db, SESSIONS, sessionId), { lastSeen: serverTimestamp() }, { merge: true });
+}
+
 /** Removes every session document. Requires `allow delete` in the rules. */
 export async function deleteAllSessions() {
 	const snapshot = await getDocs(collection(db, SESSIONS));
@@ -64,8 +69,8 @@ export function watchSessions(callback, onError) {
 		(snapshot) => {
 			callback(
 				snapshot.docs.map((d) => {
-					const { updatedAt, ...answers } = d.data();
-					return { id: d.id, ...answers };
+					const { updatedAt, lastSeen, ...answers } = d.data();
+					return { id: d.id, ...answers, lastSeen: lastSeen?.toMillis?.() ?? 0 };
 				}),
 			);
 		},
